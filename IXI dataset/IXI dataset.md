@@ -1,5 +1,5 @@
 # IXI dataset
-Collection d'images de sujet =s sains celon plusieurs protocoles d'acquisition.
+Collection d'images de sujets sains celon plusieurs protocoles d'acquisition.
 
 Données colléctées dans 3 hopitaux différents:
 - Guys: Guy’s Hospital using a Philips 1.5T system
