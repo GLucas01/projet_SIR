@@ -1,0 +1,29 @@
+// Paramètres de base
+(Registration "MultiResolutionRegistration")
+
+// Paramètres de l'étape de résolution la plus basse
+(Registration "TransformParametersAdaptor")
+  (Transform "AffineTransform")
+  (Metric "AdvancedNormalizedCorrelation")
+  (Interpolator "BSplineInterpolator")
+  (Optimizer "AdaptiveStochasticGradientDescent")
+  (AutomaticTransformInitialization "true")
+  (AutomaticTransformInitializationMethod "GeometricalCenter")
+  (AutomaticScalesEstimation "true")
+  (AutomaticParameterEstimation "true")
+  (NumberOfResolutions 1)
+  (FinalGridSpacingInPhysicalUnits 5.0)
+
+// Niveaux de résolution supplémentaires
+(Registration "MultiResolutionRegistration")
+  (ImagePyramidSchedule 4 4 4 2 2 2 1 1 1)
+  (TransformParametersAdaptor "AutomaticSpatialObjectScaleEstimation")
+  (Interpolator "BSplineInterpolator")
+  (Optimizer "AdaptiveStochasticGradientDescent")
+  (AutomaticTransformInitialization "true")
+  (AutomaticTransformInitializationMethod "GeometricalCenter")
+  (AutomaticScalesEstimation "true")
+  (AutomaticParameterEstimation "true")
+  (NumberOfResolutions 3)
+  (FinalGridSpacingInPhysicalUnits 2.0)
+

@@ -1,0 +1,81 @@
+
+transformix is started at Sun Dec  3 12:02:01 2023.
+
+which transformix:   transformix
+transformix runs at: bzh
+  Linux 6.2.0-37-generic (x64), #38~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Nov  2 18:01:13 UTC 2
+  with 7711 MB memory, and 2 cores @ 3563 MHz.
+Running transformix with parameter file "outputDir/TransformParameters.0.txt".
+
+Reading the elastix parameters from file ...
+
+Installing all components.
+InstallingComponents was successful.
+
+ELASTIX version: 5.0.1
+Command line options from ElastixBase:
+-in       /home/thomas/Desktop/4TC/SIR/Data/IXI002-Guys-0828-MPRAGESEN_-s256_-0301-00003-000001-01.nii
+-out      outputDir/result/
+-threads  unspecified, so all available threads are used
+-tp       outputDir/TransformParameters.0.txt
+-def      unspecified, so no input points transformed
+-jac      unspecified, so no det(dT/dx) computed
+-jacmat   unspecified, so no dT/dx computed
+
+=============== start of ParameterFile: outputDir/TransformParameters.0.txt ===============
+(Transform "AffineTransform")
+(NumberOfParameters 12)
+(TransformParameters 1.048095 -0.010442 0.025016 -0.033288 0.976881 0.027857 -0.001433 0.022395 1.006892 0.850912 -3.546635 3.684232)
+(InitialTransformParametersFileName "NoInitialTransform")
+(UseBinaryFormatForTransformationParameters "false")
+(HowToCombineTransforms "Compose")
+
+// Image specific
+(FixedImageDimension 3)
+(MovingImageDimension 3)
+(FixedInternalImagePixelType "float")
+(MovingInternalImagePixelType "float")
+(Size 256 256 150)
+(Index 0 0 0)
+(Spacing 0.9375000000 0.9375000000 1.1999969482)
+(Origin 88.6398925781 -116.5320053101 -112.1135559082)
+(Direction -0.0000000000 0.9923758134 0.1232487115 0.0000000000 -0.1232487115 0.9923758134 -1.0000000000 0.0000000000 -0.0000000000)
+(UseDirectionCosines "true")
+
+// AdvancedAffineTransform specific
+(CenterOfRotationPoint -0.7598800659 -12.6441564116 21.2384380940)
+
+// ResampleInterpolator specific
+(ResampleInterpolator "FinalBSplineInterpolator")
+(FinalBSplineInterpolationOrder 3)
+
+// Resampler specific
+(Resampler "DefaultResampler")
+(DefaultPixelValue 0.000000)
+(ResultImageFormat "mhd")
+(ResultImagePixelType "short")
+(CompressResultImage "false")
+
+
+=============== end of ParameterFile: outputDir/TransformParameters.0.txt ===============
+
+
+Reading input image ...
+  Reading input image took 0.036582 s
+Calling all ReadFromFile()'s ...
+  Calling all ReadFromFile()'s took 0.005902 s
+Transforming points ...
+  The command-line option "-def" is not used, so no points are transformed
+  Transforming points done, it took 0.00s
+Compute determinant of spatial Jacobian ...
+  The command-line option "-jac" is not used, so no det(dT/dx) computed.
+  Computing determinant of spatial Jacobian done, it took 0.00s
+Compute spatial Jacobian (full matrix) ...
+  The command-line option "-jacmat" is not used, so no dT/dx computed.
+  Computing spatial Jacobian done, it took 0.00s
+Resampling image and writing to disk ...
+  Resampling took 2.10s
+
+transformix has finished at Sun Dec  3 12:02:03 2023.
+Total time elapsed: 2.2s.
+
