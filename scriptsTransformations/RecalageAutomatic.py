@@ -8,8 +8,21 @@ fixed_images = os.listdir('fixed_images')
 
 files = os.listdir('parameters')
 print(files)
-parameters = os.path.join('parameters', files[0])
-print(parameters)
+nbParam = len(files)
+if nbParam == 0:
+    print("Aucun fichier de paramètres")
+    exit()
+elif nbParam == 1:
+    parameters = os.path.join('parameters', files[0])
+    print(parameters)
+elif nbParam == 2:
+    parameters_file1 = os.path.join('parameters', files[0])
+    parameters_file2 = os.path.join('parameters', files[1])
+    print(parameters_file1)
+    print(parameters_file2)
+else:
+    print("Trop de fichiers de paramètres")
+    exit()
 
 # Parcourir toutes les combinaisons d'images
 for moving_image in moving_images:
@@ -27,7 +40,11 @@ for moving_image in moving_images:
         os.makedirs(result_folder, exist_ok=True)
 
         # Construire les commandes elastix et transformix
-        elastix_command = f"elastix -m moving_images/{moving_image} -f fixed_images/{fixed_image} -p {parameters} -out {output_folder}"
+        if nbParam == 1:
+            elastix_command = f"elastix -m moving_images/{moving_image} -f fixed_images/{fixed_image} -p {parameters} -out {output_folder}"
+        if nbParam == 2:
+            elastix_command = f"elastix -m moving_images/{moving_image} -f fixed_images/{fixed_image} -p {parameters_file1} -p {parameters_file2} -out {output_folder}"
+        #elastix -f fixed_image.nii -m moving_image.nii -out output_folder -p parametres1.txt,parametres2.txt
         transformix_command = f"transformix -in seg_images/IBSR_{fixed_number}_seg_ana.nii -tp {output_folder}/TransformParameters.0.txt -out {result_folder}"
 
         # Exécuter les commandes
@@ -43,64 +60,3 @@ for moving_image in moving_images:
         output_filename = f"result.nii"
         output_path = output_folder + output_filename
         sitk.WriteImage(registrationImage, output_path)
-
-'''import subprocess
-import SimpleITK as sitk
-import os
-
-files = os.listdir('moving_images')
-print(files)
-moving_image = os.path.join('moving_images', files[0])
-print(moving_image)
-
-files = os.listdir('fixed_images')
-print(files)
-fixed_image = os.path.join('fixed_images', files[0])
-print(fixed_image)
-
-files = os.listdir('parameters')
-print(files)
-parameters = os.path.join('parameters', files[0])
-print(parameters)
-
-files = os.listdir('seg_images')
-print(files)
-seg_image = os.path.join('seg_images', files[0])
-print(seg_image)
-
-# Initialiser le compteur de dossiers
-folder_counter = 1
-
-# Construire le nom du dossier
-output_folder = f"output{folder_counter}"
-
-# Tant que le dossier existe déjà, incrémenter le compteur et construire un nouveau nom de dossier
-while os.path.exists(output_folder):
-    folder_counter += 1
-    output_folder = f"output{folder_counter}"
-
-# Créer le nouveau dossier
-os.makedirs(output_folder)
-
-# Créer le sous-dossier 'result' dans 'output_folder'
-result_folder = os.path.join(output_folder, 'result')
-os.makedirs(result_folder, exist_ok=True)
-
-# Construire les commandes
-elastic_command = f"elastix -m {moving_image} -f {fixed_image} -p {parameters} -out {output_folder}"
-transformix_command = f"transformix -in {seg_image} -tp {output_folder}/TransformParameters.0.txt -out {output_folder}/result"
-
-# Exécuter les commandes
-subprocess.run(elastic_command, shell=True)
-subprocess.run(transformix_command, shell=True)
-
-# Image recalée
-registrationImagePath = f"{output_folder}/result/result.mha"
-registrationImage = sitk.ReadImage(registrationImagePath)
-
-# Save the image
-output_folder = f"{output_folder}/result/"
-output_filename = f"result.nii"
-output_path = output_folder + output_filename
-sitk.WriteImage(registrationImage, output_path)'''
-
