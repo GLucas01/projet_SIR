@@ -1,0 +1,81 @@
+ID,Structure Anatomique
+0,Non identifié
+1,Extérieur cérébral gauche
+2,matière blanche de l’hémisphère cérébral gauche
+3,cortex de l’hémisphère cérébral gauche
+4,ventricule latéral gauche
+5,corne temporale du ventricule latéral gauche
+6,Cervelet gauche extérieur          
+7,matière blanche de l’hémisphère gauche du cervelet 
+8,cortex cérébelleux gauche           
+9,thalamus gauche
+10,Thalamus gauche proprement dit         
+11,noyau caudé gauche         
+12,putamen de gauche         
+13,Globus pallidus gauche      
+14,troisième ventricule  
+15,quatrième ventricule   
+16,tronc cérébral
+17,hippocampe gauche proprement dit 
+18,amygdale gauche
+19,insula gauche
+20,partie operculaire du gyrus frontal inférieur gauche
+21,Ligne 1  
+22,Ligne 2 
+23,Ligne 3 
+24,liquide céphalorachidien
+25,Lésion gauche
+26,noyau gauche accumbens         
+27,Substance noire gauche
+28,diencéphale ventrale gauche   
+29,Indéterminé gauche
+30,Vaisseau gauche 
+31,plexus choroïde de l’hémisphère cérébral gauche 
+32,partie orbitale du gyrus frontal inférieur gauche  
+33,gyrus orbitaire latéral gauche 
+34,aOg gauche
+35,gyrus orbitaire médial gauche
+36,gyrus orbitaire postérieur gauche
+37,Stellaire gauche
+38,gyrus orbitaire postérieur gauche
+39,gyrus orbitaire antérieur gauche
+40,Extérieur cérébral droit
+41,matière blanche de l’hémisphère cérébral droit
+42,cortex de l’hémisphère cérébral droit 
+43,ventricule latéral droit
+44,corne temporale du ventricule latéral droit 
+45,Cervelet droit extérieur
+46,matière blanche de l’hémisphère droit du cervelet  
+47,cortex cérébelleux droit
+48,thalamus droit
+49,Thalamus droit proprement dit
+50,noyau caudé droit 
+51,putamen de droite
+52,globus pallidus droit
+53,hippocampe droit proprement dit
+54,amygdale droite
+55,insula droite  
+56,partie operculaire du gyrus frontal inférieur droit
+57,Lésion droite 
+58,noyau droit accumbens
+59,Substance noire gauche
+60,diencéphale ventrale gauche
+61,Indéterminé droit
+62,Vaisseau droit
+63,plexus choroïde de l’hémisphère cérébral droit
+64,partie orbitale du gyrus frontal inférieur droit
+65,gyrus orbitaire latéral droit
+66,aOg droit
+67,gyrus orbitaire médial droit
+68,gyrus orbitaire postérieur droit
+69,Stellaire droit 
+70,gyrus orbitaire postérieur droit   
+71,gyrus orbitaire antérieur droit
+72,septum pellucidum
+73,Matière blanche du tronc cérébral droit
+74,Matière blanche du tronc cérébral gauche
+80,Os
+81,Graisse
+82,partie claire non déterminé
+83,partie sombre non déterminé
+84,corps calleux
