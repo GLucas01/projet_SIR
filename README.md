@@ -61,3 +61,25 @@ mri_convert T1_norm.mgz T1_norm.nii.gz
 #### ANTs
 - installer ants avec le fichier .zip
 - Le fichier `antsRegistrationSyN.sh` est le fichier necessaire pour le recadrage
+
+## Nomenclature
+### Architecture des fichiers
+├── T1
+│   ├── Patient 1
+│   │   ├── movingimage_fixedimage1.nii
+│   │   ├── movingimage_fixedimage2.nii
+│   │   ├── movingimage_fixedimage3.nii
+│   │   ├── movingimage.csv
+│   ├── Patient 2
+│   │   ├── etc
+│   ├── Patient 3
+│   │   ├── etc
+│   ├── etc
+├── T2
+│   ├── etc
+├── Flair
+│   ├── etc
+
+### fichier csv
+- décrit les coupes des volumes d'un patient
+- nom des colonnes : nom du volume, axe (sagital, coronnal,..), numéro de coupe, keywords, description
