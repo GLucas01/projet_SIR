@@ -3,11 +3,23 @@
 import SimpleITK as sitk
 import time
 import os
+import argparse
+
+parser = argparse.ArgumentParser(description='Bias Correction')
+
+parser.add_argument('input_dir', type=str, help='The input directory containing the images to be normalised.')
+parser.add_argument('output_dir', type=str, help='The output directory containing the normalised images')
+
 
 start_time = time.time()
 
-input_dir = "/home/julie/Documents/SIR/projet_SIR/data/toNormalise_images"
-output_dir = "/home/julie/Documents/SIR/projet_SIR/data/normalise_images"
+args = parser.parse_args()
+
+input_dir = args.input_dir
+output_dir = args.output_dir
+
+#input_dir = "/home/julie/Documents/SIR/projet_SIR/data/toNormalise_images"
+#output_dir = "/home/julie/Documents/SIR/projet_SIR/data/normalise_images"
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
