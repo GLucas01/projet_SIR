@@ -2,7 +2,7 @@
 
 Un modèle génératif pour des images synthétiques de cerveau sain.
 
-![alt text](/home/thomas/Documents/GitHub/projet_SIR/logo.png)
+![alt text](logo.png)
 
 ## Conversions
 
