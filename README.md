@@ -2,6 +2,8 @@
 
 Un modèle génératif pour des images synthétiques de cerveau sain.
 
+![alt text](/home/thomas/Documents/GitHub/projet_SIR/logo.png)
+
 ## Conversions
 
 #### DICOM to nii file
@@ -16,22 +18,11 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 
 ## Normalisation 
 
-#### Comment faire la normalisation ?
-- Utilisation de simpleITK ( librairie python )
-- Il faut utiliser un "algorithme de De Correction Du Biais"
-- Cf une étude dans Data/algosBias.pdf
-- Utilisation de N4BiasFieldCorrectionImageFilter
+####  Normalisation avec N4filter de simpleITK
+- Cf script biasCorrector.py
+- Sa normalise et lisser les nuances dans les tissus
 
-#### Trouver la normalisation optimale avec N4filter de simpleITK
-- Utilisation de Fijii, tracer un trait dans une zone
-- Il suffit de regarder si la variation d'intensité des pixel le long du trait est grande ou non.
-- Coordonnées du trait : x0,y0,x1,y1 = 116, 163, 188, 143 à la slice 100 (axe z, saggital)
-- J'ai utilisé l'image : `IXI002-Guys-0828-MPRAGESEN_-s256_-0301-00003-000001-01.ni`
-- Dans Fijii récupérer les intensités des pixel sur la ligne dans Analyse -> Plot profil -> Data -> Save data (obtention du fichier csv des valeurs)
-- J'applique cela pour plusieurs images (tout dans ../Software/Fijii/)
-- Pas de résultats significatifs, j'ai pourtant modifié les paramètres d'entrée pour le filtrage ...
-
-#### Trouver la normalisation optimale avec mri_normalize de Freesurfer
+#### Normalisation avec mri_normalize de Freesurfer
 - faut utiliser `mri_normalize image.mgz image_norm.mgz` et ça marche
 - Les nuances de gris sont "amplifié" mais c'est bien normalisé !
 - `mri_normalize` amplifie uniquement le white matter, je ne sais pas si c'est bien ou pas
@@ -48,19 +39,28 @@ mri_convert T1_norm.mgz T1_norm.nii.gz
 ## Recalage
 
 #### Elastix & Transformix
-- En utilisant elastix `sudo apt-get -y install elastix` 
-- il faut utiliser la commande suivante : ``elastix -m moving_image.nii -f fixed_image.nii -p parameters.txt -out /output
-- **Monomodale** : on compare T1 avec T1 ( information mutuelle )
-- **Multimodale** : T1 avec flair ( différence nuance niveau de gris )
-- on fait le recalage de l'image de la base de données ( moving image ) avec celle de l'atlas fixe
-- pour paramters.txt il y a des exemples ici : https://github.com/SuperElastix/ElastixModelZoo/tree/master/models
-- On pense que Par0035 est bien ( il ya du mono et multi modale )
-- Sinom il existe d'autres fichiers de paramètre : Par0002, Par0009, Par0010, Par0035, Par0036, Par0039, Par0063, Par0064
-- Pour obtenir l'image recalé : `transformix -in image.nii -tp outputDir/TransformParameters.0.txt -out outputDir/result`
+- On a abandonné car pas ouf
 
 #### ANTs
 - installer ants avec le fichier .zip
 - Le fichier `antsRegistrationSyN.sh` est le fichier necessaire pour le recadrage
+- C'est bien j'utilise une interpolation linéaire, une transformation rigide et je fais du skull stripping (commande FSL : `bet input output`) au préalable sur les images mobiles T2 et FLAIR car mes images fixes sont tous en T1 et si je fais pas ça le recalage n'est pas optimal.
+
+## Rotations
+- Utilisation de FSL 
+- Commande : `fslswapdim input.nii x y z output.nii`
+
+## Redimensionnement voxel size
+- Nous ont veux avoir toutes les images en **1x1x1** comme ça c'est normalisé
+- On peut modifer une image qui n'est pas en 1x1x1 avec **FSL** : 
+	`fslchpixdim input_image 1 1 1 output_image`
+- Il peut y avoir des impacts d'interpolation :
+	- perte de résolution
+	- Modification intensité voxels
+- Il faut trouver un méthode pour palié à cela ...
+
+## Augmentation de données ?
+- Il suffit simplement de recaler une images sur plusieurs IBSR ( y'en a 18 donc on peut faire x18 la dataset )
 
 ## Nomenclature
 ### Architecture des fichiers
