@@ -8,7 +8,10 @@ ID,SEXE,AGE
 IXI_ID,"SEX_ID(1=m,2=f)",HEIGHT,WEIGHT,AGE
 
 ## OASIS_info.csv
-SESSION,ID,AGE,GENDER,HAND
+ID,AGE,GENDER,HAND
+
+## Kirby_info.csv
+ID,AGE,GENDER,HAND
 
 ## Image_info.csv
 Modalité,Orientation
