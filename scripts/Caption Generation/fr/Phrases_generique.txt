@@ -1,0 +1,78 @@
+axiale
+IRM pondérée en [modalite] illustrant le crâne d'[genre][age], en coupe [coupe] n°[num coupe] en partant de la base du crâne.
+Image IRM illustrant la tête d'[genre][age] en pondération [modalite], en coupe [coupe]. Nous observons la coupe n°[num coupe] à partir de la base du crâne.
+IRM pondérée en [modalité], montrant le crâne d'une personne [genre][age], en coupe [coupe] n°[num coupe] à partir de la base du crâne.
+Image par résonance magnétique pondérée en [modalité], représentant le crâne d'[genre][age], en coupe [coupe] n°[num coupe] débutant depuis la base du crâne.
+Visualisation IRM pondérée en [modalité] du crâne d'[genre][age], en coupe [coupe] n°[num coupe] commençant à la base du crâne.
+Cliché IRM pondéré en [modalité] décrivant le crâne d'[genre] d'âge [age], en coupe [coupe] n°[num coupe] à partir de la base du crâne.
+Image de résonance magnétique pondérée [modalité], illustrant le crâne d'[genre][age], en coupe [coupe] n°[num coupe] en partant de la base du crâne.
+Image IRM illustrant la tête d'[genre][age] en pondération [modalite], en coupe [coupe]. Nous observons la coupe n°[num coupe] débutant depuis la base du crâne.
+Image IRM en pondération [modalite], présentant la tête d'[genre][age], en coupe [coupe]. L'observation se fait sur la coupe n°[num coupe] à partir de la base du crâne.
+Image en pondération [modalite] de l'IRM, montrant la tête d'[genre][age] en coupe [coupe]. La coupe n°[num coupe] est observée à partir de la base du crâne.
+Image IRM de la tête d'[genre][age] en pondération [modalite], en coupe [coupe]. Nous observons la coupe n°[num coupe] débutant de la base du crâne.
+IRM en pondération [modalite], illustrant la tête d'[genre][age] en coupe [coupe]. L'observation porte sur la coupe n°[num coupe] à partir de la base du crâne.
+IRM avec pondération en [modalite], dépeignant le crâne d'une personne [genre][age], dans une coupe [coupe] n°[num coupe] en partant de la base du crâne.
+Illustration par IRM de la tête d'[genre][age] en pondération [modalite], avec une coupe [coupe]. Nous examinons attentivement la coupe n°[num coupe] à partir de la base du crâne.
+IRM pondérée en [modalité], exposant le crâne d'une personne [genre][age], en coupe [coupe] n°[num coupe] débutant de la base du crâne.
+Représentation par résonance magnétique pondérée en [modalité], montrant le crâne d'[genre][age], dans une coupe [coupe] n°[num coupe] initiée depuis la base du crâne.
+Visualisation IRM pondérée en [modalité] du crâne d'[genre][age], avec une coupe [coupe] n°[num coupe] débutant à la base du crâne.
+Image IRM pondérée en [modalité], décrivant le crâne d'[genre] d'âge [age], en coupe [coupe] n°[num coupe] à partir de la base du crâne.
+Cliché de résonance magnétique pondéré en [modalité], illustrant le crâne d'[genre][age], en coupe [coupe] n°[num coupe] en partant de la base du crâne.
+Image IRM illustrant la tête d'[genre][age] en pondération [modalite], avec une coupe [coupe]. Nous observons attentivement la coupe n°[num coupe] débutant depuis la base du crâne.
+Visualisation en pondération [modalite] de l'IRM, montrant la tête d'[genre][age] en coupe [coupe]. La coupe n°[num coupe] est observée à partir de la base du crâne.
+Image IRM de la tête d'[genre][age] en pondération [modalite], avec une coupe [coupe]. Nous observons la coupe n°[num coupe] débutant de la base du crâne.
+
+coronale
+IRM pondérée en [modalite] montrant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] partant de l'arrière du crâne.
+Image IRM d'une tête humaine d'[genre][age] en pondération [modalite], en coupe [coupe]. Nous observons la coupe n°[num coupe] en partant de l'arrière du crâne.
+IRM pondérée en [modalite] exhibant la tête d'[genre][age], issue d'une coupe [coupe] n°[num coupe] démarrant de l'arrière du crâne.
+Image de résonance magnétique pondérée en [modalite], révélant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] débutant de l'arrière du crâne.
+IRM en pondération [modalite], montrant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] initiée depuis l'arrière du crâne.
+Cliché IRM pondéré en [modalite], illustrant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] partant de l'arrière du crâne.
+Image IRM pondérée en [modalite], représentant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] débutant de l'arrière du crâne.
+Image de résonance magnétique pondérée [modalité], illustrant le crâne d'[genre][age], en coupe [coupe] n°[num coupe] en partant de l'arrière du crâne.
+Image IRM illustrant la tête d'[genre][age] en pondération [modalite], en coupe [coupe]. Nous observons la coupe n°[num coupe] débutant de l'arrière du crâne.
+Image IRM en pondération [modalite], présentant la tête d'[genre][age], en coupe [coupe]. L'observation se fait sur la coupe n°[num coupe] à partir de l'arrière du crâne.
+Image en pondération [modalite] de l'IRM, montrant la tête d'[genre][age] en coupe [coupe]. La coupe n°[num coupe] est observée à partir de l'arrière du crâne.
+Image IRM de la tête d'[genre][age] en pondération [modalite], en coupe [coupe]. Nous observons la coupe n°[num coupe] débutant de l'arrière du crâne.
+IRM en pondération [modalite], illustrant la tête d'[genre][age] en coupe [coupe]. L'observation porte sur la coupe n°[num coupe] à partir de l'arrière du crâne.
+IRM pondérée en [modalite] présentant la tête d'[genre][age], avec une coupe [coupe] n°[num coupe] débutant à l'arrière du crâne.
+Image IRM d'une tête humaine d'[genre][age] en pondération [modalite], avec une coupe [coupe]. Nous examinons attentivement la coupe n°[num coupe] à partir de l'arrière du crâne.
+IRM pondérée en [modalite], exposant la tête d'[genre][age], depuis une coupe [coupe] n°[num coupe] démarrant de l'arrière du crâne.
+Image de résonance magnétique pondérée en [modalite], révélant la tête d'[genre][age], avec une coupe [coupe] n°[num coupe] initiée depuis l'arrière du crâne.
+IRM en pondération [modalite], montrant la tête d'[genre][age], avec une coupe [coupe] n°[num coupe] partant de l'arrière du crâne.
+Cliché IRM pondéré en [modalite], illustrant la tête d'[genre][age], avec une coupe [coupe] n°[num coupe] débutant de l'arrière du crâne.
+Image IRM pondérée en [modalite], représentant la tête d'[genre][age], avec une coupe [coupe] n°[num coupe] commençant à l'arrière du crâne.
+Image de résonance magnétique pondérée [modalité], illustrant le crâne d'[genre][age], en coupe [coupe] n°[num coupe] débutant à l'arrière du crâne.
+Image IRM illustrant la tête d'[genre][age] en pondération [modalite], avec une coupe [coupe]. Nous observons attentivement la coupe n°[num coupe] débutant depuis l'arrière du crâne.
+Image IRM en pondération [modalite], présentant la tête d'[genre][age], avec une coupe [coupe]. L'observation se fait sur la coupe n°[num coupe] à partir de l'arrière du crâne.
+Image IRM de la tête d'[genre][age] en pondération [modalite], avec une coupe [coupe]. Nous observons la coupe n°[num coupe] débutant à l'arrière du crâne.
+
+sagittale
+Image IRM en pondération [modalite] d'[genre][age], en coupe [coupe] n°[num coupe] partant de l'hémisphère droit du crâne.
+Capture d'image par résonance magnétique (IRM) représentant la tête d'[genre] âgé[age], avec une séquence pondérée en [modalite] et une coupe [coupe]. La coupe spécifique est la numéro [num coupe], comptée à partir de l'hémisphère droit du crâne.
+IRM pondérée en [modalite] montrant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] partant de l'hémisphère droit du crâne.
+Image IRM d'une tête humaine d'[genre][age] en pondération [modalite], en coupe [coupe]. Nous observons la coupe n°[num coupe] en partant de l'hémisphère droit du crâne.
+IRM pondérée en [modalite] exhibant la tête d'[genre][age], issue d'une coupe [coupe] n°[num coupe] démarrant de l'hémisphère droit du crâne.
+Image de résonance magnétique pondérée en [modalite], révélant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] débutant de l'hémisphère droit du crâne.
+IRM en pondération [modalite], montrant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] initiée depuis l'hémisphère droit du crâne.
+Cliché IRM pondéré en [modalite], illustrant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] partant de l'hémisphère droit du crâne.
+Image IRM pondérée en [modalite], représentant la tête d'[genre][age], d'une coupe [coupe] n°[num coupe] débutant de l'hémisphère droit du crâne.
+Image de résonance magnétique pondérée [modalité], illustrant le crâne d'[genre][age], en coupe [coupe] n°[num coupe] en partant de l'hémisphère droit du crâne.
+Image IRM illustrant la tête d'[genre][age] en pondération [modalite], en coupe [coupe]. Nous observons la coupe n°[num coupe] débutant de l'hémisphère droit du crâne.
+Image IRM en pondération [modalite], présentant la tête d'[genre][age], en coupe [coupe]. L'observation se fait sur la coupe n°[num coupe] à partir de l'hémisphère droit du crâne.
+Image en pondération [modalite] de l'IRM, montrant la tête d'[genre][age] en coupe [coupe]. La coupe n°[num coupe] est observée à partir de l'hémisphère droit du crâne.
+Image IRM de la tête d'[genre][age] en pondération [modalite], en coupe [coupe]. Nous observons la coupe n°[num coupe] débutant de l'hémisphère droit du crâne.
+IRM en pondération [modalite], illustrant la tête d'[genre][age] en coupe [coupe]. L'observation porte sur la coupe n°[num coupe] à partir de l'hémisphère droit du crâne.
+Image IRM en pondération [modalite] d'[genre][age], avec une coupe [coupe] n°[num coupe] débutant de l'hémisphère droit du crâne.
+Capture d'image par résonance magnétique (IRM) représentant la tête d'[genre] âgé[age], avec une séquence pondérée en [modalite] et une coupe [coupe] spécifique, démarrant depuis l'hémisphère droit du crâne.
+IRM pondérée en [modalite] montrant la tête d'[genre][age], dans une coupe [coupe] n°[num coupe] débutant de l'hémisphère droit du crâne.
+Image IRM d'une tête humaine d'[genre][age] en pondération [modalite], avec une coupe [coupe]. Nous observons la coupe n°[num coupe] en partant de l'hémisphère droit du crâne.
+IRM pondérée en [modalite], exhibant la tête d'[genre][age], issue d'une coupe [coupe] n°[num coupe] démarrant de l'hémisphère droit du crâne.
+Image de résonance magnétique pondérée en [modalite], révélant la tête d'[genre][age], avec une coupe [coupe] n°[num coupe] débutant de l'hémisphère droit du crâne.
+IRM en pondération [modalite], montrant la tête d'[genre][age], avec une coupe [coupe] n°[num coupe] initiée depuis l'hémisphère droit du crâne.
+Cliché IRM pondéré en [modalite], illustrant la tête d'[genre][age], avec une coupe [coupe] n°[num coupe] débutant de l'hémisphère droit du crâne.
+Image IRM pondérée en [modalite], représentant la tête d'[genre][age], avec une coupe [coupe] n°[num coupe] commençant de l'hémisphère droit du crâne.
+Image IRM illustrant la tête d'[genre][age] en pondération [modalite], avec une coupe [coupe]. Nous observons la coupe n°[num coupe] débutant de l'hémisphère droit du crâne.
+Image IRM en pondération [modalite], présentant la tête d'[genre][age], avec une coupe [coupe]. L'observation se fait sur la coupe n°[num coupe] à partir de l'hémisphère droit du crâne.
+Image IRM de la tête d'[genre][age] en pondération [modalite], avec une coupe [coupe]. Nous observons la coupe n°[num coupe] débutant de l'hémisphère droit du crâne.
