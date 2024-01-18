@@ -28,7 +28,7 @@ def generer_version_mots_cles(mots_cles):
     mots_a_retirer = ['Unknown', 'left undetermined', 'right undetermined']
     mots_cles_filtres = [(mot, nombre) for mot, nombre in mots_cles if mot not in mots_a_retirer]
 
-    mots_cles_texte = ', '.join([f"the {mot}" for mot, nombre in mots_cles_filtres])
+    mots_cles_texte = ', '.join([f"the {mot} of volume {nombre} mm³" for mot, nombre in mots_cles_filtres])
     dernier_mot_index = mots_cles_texte.rfind(', ')
     if dernier_mot_index != -1:
         mots_cles_texte = mots_cles_texte[:dernier_mot_index] + ' and ' + mots_cles_texte[dernier_mot_index + 2:]

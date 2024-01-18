@@ -1,78 +1,78 @@
 axiale
-Weighted MRI in [modalite] illustrating the skull of [genre][age], with [coupe] section n°[num coupe] starting from the base of the skull.
-MRI image illustrating the head of [genre][age] with weighting in [modalite], of [coupe] section n°[num coupe]. We observe slice n°[num coupe] starting from the base of the skull.
-Weighted MRI in [modalite], showing the skull of a person [genre][age], of [coupe] section n°[num coupe] starting from the base of the skull.
-MRI image with weighted imaging in [modalite], depicting the skull of [genre][age], of [coupe] section n°[num coupe] beginning from the base of the skull.
-Weighted MRI visualization in [modalite] of the skull of [genre][age], of [coupe] section n°[num coupe] starting at the base of the skull.
-MRI snapshot with weighting in [modalite] describing the skull of [genre] of age [age], of [coupe] section n°[num coupe] from the base of the skull.
-Weighted magnetic resonance image in [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the base of the skull.
-MRI image illustrating the head of [genre][age] with weighting in [modalite], of [coupe] section. We observe slice n°[num coupe] beginning from the base of the skull.
-MRI image with weighting in [modalite], presenting the head of [genre][age], of [coupe] section. The observation is made on slice n°[num coupe] starting from the base of the skull.
-Image with weighting in [modalite] of the MRI, showing the head of [genre][age] of [coupe] section. Slice n°[num coupe] is observed starting from the base of the skull.
-MRI image of the head of [genre][age] with weighting in [modalite], of [coupe] section. We observe slice n°[num coupe] beginning from the base of the skull.
-MRI with weighting in [modalite], illustrating the head of [genre][age] of [coupe] section. The observation focuses on slice n°[num coupe] starting from the base of the skull.
-MRI with weighting in [modalite], depicting the skull of a person [genre][age], of [coupe] section n°[num coupe] starting from the base of the skull.
-Illustration by MRI of the head of [genre][age] with weighting in [modalite], with [coupe] section. We carefully examine slice n°[num coupe] starting from the base of the skull.
-Weighted MRI in [modalite], exposing the skull of a person [genre][age], of [coupe] section n°[num coupe] beginning from the base of the skull.
-MRI representation with weighting in [modalite], showing the skull of [genre][age], of [coupe] section n°[num coupe] initiated from the base of the skull.
-Weighted MRI visualization in [modalite] of the skull of [genre][age], with [coupe] section n°[num coupe] starting at the base of the skull.
-MRI image with weighting in [modalite], describing the skull of [genre] of age [age], of [coupe] section n°[num coupe] from the base of the skull.
-MRI snapshot with weighted imaging in [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the base of the skull.
-MRI image illustrating the head of [genre][age] in weighting [modalite], with [coupe] section. We carefully observe slice n°[num coupe] beginning from the base of the skull.
-Visualization in weighting [modalite] of the MRI, showing the head of [genre][age] of [coupe] section. Slice n°[num coupe] is observed from the base of the skull.
-MRI image of the head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] beginning from the base of the skull.
+Weighted MRI size[dimensions] in [modalite] illustrating the skull of [genre][age], with [coupe] section n°[num coupe] starting from the base of the skull.
+MRI image size [dimensions] illustrating the head of [genre][age] with weighting in [modalite], of [coupe] section n°[num coupe]. We observe slice n°[num coupe] starting from the base of the skull.
+Weighted MRI size [dimensions] in [modalite], showing the skull of a person [genre][age], of [coupe] section n°[num coupe] starting from the base of the skull.
+MRI image size [dimensions] with weighted imaging in [modalite], depicting the skull of [genre][age], of [coupe] section n°[num coupe] beginning from the base of the skull.
+Weighted MRI size [dimensions] visualization in [modalite] of the skull of [genre][age], of [coupe] section n°[num coupe] starting at the base of the skull.
+MRI snapshot size [dimensions] with weighting in [modalite] describing the skull of [genre] of age [age], of [coupe] section n°[num coupe] from the base of the skull.
+Weighted magnetic resonance image size [dimensions] in [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the base of the skull.
+MRI image size [dimensions] illustrating the head of [genre][age] with weighting in [modalite], of [coupe] section. We observe slice n°[num coupe] beginning from the base of the skull.
+MRI image size [dimensions] with weighting in [modalite], presenting the head of [genre][age], of [coupe] section. The observation is made on slice n°[num coupe] starting from the base of the skull.
+Image size [dimensions] with weighting in [modalite] of the MRI, showing the head of [genre][age] of [coupe] section. Slice n°[num coupe] is observed starting from the base of the skull.
+MRI image size [dimensions] of the head of [genre][age] with weighting in [modalite], of [coupe] section. We observe slice n°[num coupe] beginning from the base of the skull.
+MRI size [dimensions] with weighting in [modalite], illustrating the head of [genre][age] of [coupe] section. The observation focuses on slice n°[num coupe] starting from the base of the skull.
+MRI size [dimensions] with weighting in [modalite], depicting the skull of a person [genre][age], of [coupe] section n°[num coupe] starting from the base of the skull.
+Illustration size [dimensions] by MRI of the head of [genre][age] with weighting in [modalite], with [coupe] section. We carefully examine slice n°[num coupe] starting from the base of the skull.
+Weighted MRI size [dimensions] in [modalite], exposing the skull of a person [genre][age], of [coupe] section n°[num coupe] beginning from the base of the skull.
+MRI representation size [dimensions] with weighting in [modalite], showing the skull of [genre][age], of [coupe] section n°[num coupe] initiated from the base of the skull.
+Weighted MRI visualization size [dimensions] in [modalite] of the skull of [genre][age], with [coupe] section n°[num coupe] starting at the base of the skull.
+MRI image size [dimensions] with weighting in [modalite], describing the skull of [genre] of age [age], of [coupe] section n°[num coupe] from the base of the skull.
+MRI snapshot size [dimensions] with weighted imaging in [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the base of the skull.
+MRI image size [dimensions] illustrating the head of [genre][age] in weighting [modalite], with [coupe] section. We carefully observe slice n°[num coupe] beginning from the base of the skull.
+Visualization in weighting [modalite] of the MRI size [dimensions], showing the head of [genre][age] of [coupe] section. Slice n°[num coupe] is observed from the base of the skull.
+MRI image size [dimensions] of the head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] beginning from the base of the skull.
 
 coronale
-Weighted MRI in [modalite] showing the head of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
-MRI image of a human head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the back of the skull.
-Weighted MRI in [modalite], exhibiting the head of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
-Weighted magnetic resonance image in [modalite], revealing the head of [genre][age], of [coupe] section n°[num coupe] beginning from the back of the skull.
-MRI in weighting [modalite], showing the head of [genre][age], of [coupe] section n°[num coupe] initiated from the back of the skull.
-MRI snapshot with weighting in [modalite], illustrating the head of [genre][age], in slice [coupe] n°[num coupe] starting from the back of the skull.
-Weighted MRI image in [modalite], depicting the head of [genre][age], of [coupe] section n°[num coupe] beginning from the back of the skull.
-Weighted magnetic resonance image in [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
-MRI image illustrating the head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the back of the skull.
-MRI in weighting [modalite], presenting the head of [genre][age], of [coupe] section. The observation is made on slice n°[num coupe] from the back of the skull.
-Image in weighting [modalite] of the MRI, showing the head of [genre][age] of [coupe] section. Slice n°[num coupe] is observed from the back of the skull.
-MRI image of the head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] beginning from the back of the skull.
-MRI in weighting [modalite], illustrating the head of [genre][age] of [coupe] section. The observation focuses on slice n°[num coupe] from the back of the skull.
-Weighted MRI in [modalite], presenting the head of [genre][age], with [coupe] sectionn°[num coupe] beginning at the back of the skull.
-MRI image of a human head of [genre][age] in weighting [modalite], with [coupe] section. We carefully examine slice n°[num coupe] from the back of the skull.
-Weighted MRI in [modalite], exposing the head of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
-Weighted magnetic resonance image in [modalite], revealing the head of [genre][age], with [coupe] section n°[num coupe] initiated from the back of the skull.
-MRI in weighting [modalite], showing the head of [genre][age], with [coupe] section n°[num coupe] starting from the back of the skull.
-MRI snapshot with weighted imaging in [modalite], illustrating the head of [genre][age], with [coupe] section n°[num coupe] beginning from the back of the skull.
-Weighted MRI image in [modalite], representing the head of [genre][age], with [coupe] section n°[num coupe] starting at the back of the skull.
-Weighted magnetic resonance image in [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
-MRI image illustrating the head of [genre][age] in weighting [modalite], with [coupe] section. We carefully observe slice n°[num coupe] beginning from the back of the skull.
-MRI in weighting [modalite], presenting the head of [genre][age], with [coupe] section. The observation is made on slice n°[num coupe] from the back of the skull.
-MRI image of the head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] starting at the back of the skull.
+Weighted MRI size [dimensions] in [modalite] showing the head of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
+MRI image size [dimensions] of a human head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the back of the skull.
+Weighted MRI size [dimensions] in [modalite], exhibiting the head of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
+Weighted magnetic resonance image size [dimensions] in [modalite], revealing the head of [genre][age], of [coupe] section n°[num coupe] beginning from the back of the skull.
+MRI size [dimensions] in weighting [modalite], showing the head of [genre][age], of [coupe] section n°[num coupe] initiated from the back of the skull.
+MRI snapshot size [dimensions] with weighting in [modalite], illustrating the head of [genre][age], in slice [coupe] n°[num coupe] starting from the back of the skull.
+Weighted MRI image size [dimensions] in [modalite], depicting the head of [genre][age], of [coupe] section n°[num coupe] beginning from the back of the skull.
+Weighted magnetic resonance image size [dimensions] in [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
+MRI image size [dimensions] illustrating the head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the back of the skull.
+MRI size [dimensions] in weighting [modalite], presenting the head of [genre][age], of [coupe] section. The observation is made on slice n°[num coupe] from the back of the skull.
+Image in weighting [modalite] of the MRI size [dimensions], showing the head of [genre][age] of [coupe] section. Slice n°[num coupe] is observed from the back of the skull.
+MRI image size [dimensions] of the head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] beginning from the back of the skull.
+MRI size [dimensions] in weighting [modalite], illustrating the head of [genre][age] of [coupe] section. The observation focuses on slice n°[num coupe] from the back of the skull.
+Weighted MRI size [dimensions] in [modalite], presenting the head of [genre][age], with [coupe] sectionn°[num coupe] beginning at the back of the skull.
+MRI image size [dimensions] of a human head of [genre][age] in weighting [modalite], with [coupe] section. We carefully examine slice n°[num coupe] from the back of the skull.
+Weighted MRI size [dimensions] in [modalite], exposing the head of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
+Weighted magnetic resonance image size [dimensions] in [modalite], revealing the head of [genre][age], with [coupe] section n°[num coupe] initiated from the back of the skull.
+MRI size [dimensions] in weighting [modalite], showing the head of [genre][age], with [coupe] section n°[num coupe] starting from the back of the skull.
+MRI snapshot size [dimensions] with weighted imaging in [modalite], illustrating the head of [genre][age], with [coupe] section n°[num coupe] beginning from the back of the skull.
+Weighted MRI image size [dimensions] in [modalite], representing the head of [genre][age], with [coupe] section n°[num coupe] starting at the back of the skull.
+Weighted magnetic resonance image size [dimensions] in [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the back of the skull.
+MRI image size [dimensions] illustrating the head of [genre][age] in weighting [modalite], with [coupe] section. We carefully observe slice n°[num coupe] beginning from the back of the skull.
+MRI size [dimensions] in weighting [modalite], presenting the head of [genre][age], with [coupe] section. The observation is made on slice n°[num coupe] from the back of the skull.
+MRI image size [dimensions] of the head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] starting at the back of the skull.
 
 sagittale
-MRI image in weighting [modalite] of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-Magnetic resonance image (MRI) capturing the head of [genre] aged [age], with a sequence weighted in [modalite] and [coupe] section. The specific slice is number [num coupe], counted from the right hemisphere of the skull.
-Weighted MRI in [modalite], showing the head of [genre][age], with [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-MRI image of a human head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
-Weighted MRI in [modalite], exhibiting the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-Weighted magnetic resonance image in [modalite], revealing the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-MRI in weighting [modalite], showing the head of [genre][age], of [coupe] section n°[num coupe] initiated from the right hemisphere of the skull.
-MRI snapshot in weighted [modalite], illustrating the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-Weighted MRI image in [modalite], depicting the head of [genre][age], of [coupe] section n°[num coupe] beginning from the right hemisphere of the skull.
-MRI image in weighted [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-MRI image illustrating the head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
-MRI image in weighting [modalite], presenting the head of [genre][age], of [coupe] section. The observation is made on slice n°[num coupe] from the right hemisphere of the skull.
-Image in weighting [modalite] of the MRI, showing the head of [genre][age] of [coupe] section. Slice n°[num coupe] is observed starting from the right hemisphere of the skull.
-MRI image of the head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
-MRI in weighting [modalite], illustrating the head of [genre][age] of [coupe] section. The observation focuses on slice n°[num coupe] from the right hemisphere of the skull.
-MRI image in weighting [modalite] of [genre][age], with [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-Magnetic Resonance Imaging (MRI) capture representing the head of [genre] aged [age], with a sequence weighted in [modalite] and [coupe] section, starting from the right hemisphere of the skull.
-Weighted MRI in [modalite] showing the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-MRI image of a human head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
-Weighted MRI in [modalite], exhibiting the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-MRI image weighted in [modalite], revealing the head of [genre][age], with [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-MRI in weighting [modalite], showing the head of [genre][age], with [coupe] section n°[num coupe] initiated from the right hemisphere of the skull.
-MRI snapshot weighted in [modalite], illustrating the head of [genre][age], with [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
-Weighted MRI image in [modalite], representing the head of [genre][age], with [coupe] section n°[num coupe] beginning from the right hemisphere of the skull.
-MRI image illustrating the head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
-MRI in weighting [modalite], presenting the head of [genre][age], with [coupe] section. The observation is made on slice n°[num coupe] from the right hemisphere of the skull.
-MRI image of the head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
+MRI image size [dimensions] in weighting [modalite] of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+Magnetic resonance image (MRI) size [dimensions] capturing the head of [genre] aged [age], with a sequence weighted in [modalite] and [coupe] section. The specific slice is number [num coupe], counted from the right hemisphere of the skull.
+Weighted MRI size [dimensions] in [modalite], showing the head of [genre][age], with [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+MRI image size [dimensions] of a human head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
+Weighted MRI size [dimensions] in [modalite], exhibiting the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+Weighted magnetic resonance image size [dimensions] in [modalite], revealing the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+MRI size [dimensions] in weighting [modalite], showing the head of [genre][age], of [coupe] section n°[num coupe] initiated from the right hemisphere of the skull.
+MRI snapshot size [dimensions] in weighted [modalite], illustrating the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+Weighted MRI image size [dimensions] in [modalite], depicting the head of [genre][age], of [coupe] section n°[num coupe] beginning from the right hemisphere of the skull.
+MRI image size [dimensions] in weighted [modalite], illustrating the skull of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+MRI image size [dimensions] illustrating the head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
+MRI image size [dimensions] in weighting [modalite], presenting the head of [genre][age], of [coupe] section. The observation is made on slice n°[num coupe] from the right hemisphere of the skull.
+Image size [dimensions] in weighting [modalite] of the MRI, showing the head of [genre][age] of [coupe] section. Slice n°[num coupe] is observed starting from the right hemisphere of the skull.
+MRI image size [dimensions] of the head of [genre][age] in weighting [modalite], of [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
+MRI size [dimensions] in weighting [modalite], illustrating the head of [genre][age] of [coupe] section. The observation focuses on slice n°[num coupe] from the right hemisphere of the skull.
+MRI image size [dimensions] in weighting [modalite] of [genre][age], with [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+Magnetic Resonance Imaging (MRI) size [dimensions] capture representing the head of [genre] aged [age], with a sequence weighted in [modalite] and [coupe] section, starting from the right hemisphere of the skull.
+Weighted MRI size [dimensions] in [modalite] showing the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+MRI image size [dimensions] of a human head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
+Weighted MRI size [dimensions] in [modalite], exhibiting the head of [genre][age], of [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+MRI image size [dimensions] weighted in [modalite], revealing the head of [genre][age], with [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+MRI size [dimensions] in weighting [modalite], showing the head of [genre][age], with [coupe] section n°[num coupe] initiated from the right hemisphere of the skull.
+MRI snapshot size [dimensions] weighted in [modalite], illustrating the head of [genre][age], with [coupe] section n°[num coupe] starting from the right hemisphere of the skull.
+Weighted MRI image size [dimensions] in [modalite], representing the head of [genre][age], with [coupe] section n°[num coupe] beginning from the right hemisphere of the skull.
+MRI image size [dimensions] illustrating the head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
+MRI size [dimensions] in weighting [modalite], presenting the head of [genre][age], with [coupe] section. The observation is made on slice n°[num coupe] from the right hemisphere of the skull.
+MRI image size [dimensions] of the head of [genre][age] in weighting [modalite], with [coupe] section. We observe slice n°[num coupe] starting from the right hemisphere of the skull.
