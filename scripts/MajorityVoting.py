@@ -1,16 +1,44 @@
 import SimpleITK as sitk
+import sys
+import os
+import glob
 
-img1 = sitk.ReadImage('/media/julie/KINGSTON/SIR/projet_SIR/data/IBSR/skull_stripped/IBSR_01_ana.nii.gz', sitk.sitkFloat32)
-img2 = sitk.ReadImage('/media/julie/KINGSTON/SIR/projet_SIR/data/IBSR/skull_stripped/IBSR_02_ana.nii.gz', sitk.sitkFloat32)
-img3 = sitk.ReadImage('/media/julie/KINGSTON/SIR/projet_SIR/data/IBSR/skull_stripped/IBSR_03_ana.nii.gz', sitk.sitkFloat32)
-img1 = sitk.Cast(img1, sitk.sitkUInt8)
-img2 = sitk.Cast(img2, sitk.sitkUInt8)
-img3 = sitk.Cast(img3, sitk.sitkUInt8)
+if len(sys.argv) > 1:
+    folder = sys.argv[1]
+else:
+    print("Usage: MajorityVoting.py <input_folder>\nThe images in the input_folder msut be segmented")
+    sys.exit(1)
+
+all_files = glob.glob(os.path.join(folder, "*.nii"))
+
+file_groups = {}
+for filename in all_files:
+    prefix=os.path.basename(filename).split('_')[0]
+    if prefix not in file_groups:
+        file_groups[prefix] = []
+    file_groups[prefix].append(filename)
+
+for prefix, files in file_groups.items(): #itération sur chaque patient
+    images = []
+
+    reference_image=files[0]
 
 
-label_voting_filter = sitk.LabelVotingImageFilter()
+    # itération sur chque fichier de recalage
+    for filename in files:
+        path=os.path.join(folder, filename)
+        img=sitk.ReadImage(path, sitk.sitkUInt32)
+        images.append(img)
+        #print(f"Image: {filename}")
+        #print(f"Origin: {img.GetOrigin()}")
+        #print(f"Spacing: {img.GetSpacing()}")
 
-label_voting_filter.SetLabelForUndecidedPixels(0)
-result_image = label_voting_filter.Execute(img1, img2, img3)
+    for i in range(1, len(images)):
+        images[i].SetOrigin(images[0].GetOrigin())
+        images[i].SetSpacing(images[0].GetSpacing())
 
-sitk.WriteImage(result_image, '/media/julie/KINGSTON/SIR/projet_SIR/data/IBSR/skull_stripped/result_image.nii.gz')
+
+    label_voting_filter = sitk.LabelVotingImageFilter()
+    result_image = label_voting_filter.Execute(images)
+    sitk.WriteImage(result_image, os.path.join('/media/julie/KINGSTON/SIR/projet_SIR/data/IBSR/Majority', prefix + "_majority.nii.gz"))
+    print(f"Majority Voting effectué sur les images du patient: {prefix}")
