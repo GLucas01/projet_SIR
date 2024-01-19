@@ -4,12 +4,13 @@ import os
 import glob
 
 if len(sys.argv) > 1:
-    folder = sys.argv[1]
+    input_folder = sys.argv[1]
+    output_folder = sys.argv[2]
 else:
-    print("Usage: MajorityVoting.py <input_folder>\nThe images in the input_folder msut be segmented")
+    print("Usage: MajorityVoting.py <input_folder> <output_folder>\nThe images in the input_folder msut be segmented")
     sys.exit(1)
 
-all_files = glob.glob(os.path.join(folder, "*.nii"))
+all_files = glob.glob(os.path.join(input_folder, "*.nii"))
 
 file_groups = {}
 for filename in all_files:
@@ -26,7 +27,7 @@ for prefix, files in file_groups.items(): #itération sur chaque patient
 
     # itération sur chque fichier de recalage
     for filename in files:
-        path=os.path.join(folder, filename)
+        path=os.path.join(input_folder, filename)
         img=sitk.ReadImage(path, sitk.sitkUInt32)
         images.append(img)
         #print(f"Image: {filename}")
@@ -40,5 +41,5 @@ for prefix, files in file_groups.items(): #itération sur chaque patient
 
     label_voting_filter = sitk.LabelVotingImageFilter()
     result_image = label_voting_filter.Execute(images)
-    sitk.WriteImage(result_image, os.path.join('/media/julie/KINGSTON/SIR/projet_SIR/data/IBSR/Majority', prefix + "_majority.nii.gz"))
+    sitk.WriteImage(result_image, os.path.join(output_folder, prefix + "_majority.nii.gz"))
     print(f"Majority Voting effectué sur les images du patient: {prefix}")
