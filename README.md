@@ -4,7 +4,54 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 
 ![alt text](logo.png)
 
-## Conversions
+## Traitement sur les images (rotation, recalage, normalisation, nouveaux atlas)
+
+### Rotations
+- Utilisation de FSL 
+- Commande : `fslswapdim input.nii x y z output.nii`
+- pour la dataset OASIS, rotation constante qui est la suivante : `fslswapdim input.nii z -x y output.nii`
+
+### Recalage
+
+#### skull_stripping.sh
+- permet d'enlever les zones extérieures du cerveau . Les images obtenues sont "skulled"
+- **usage** :
+	- général : `skull_stripping.sh <dossier>`
+
+#### registration_with_mat.sh
+- permet d'effectuer le recalage
+- **adaptation code** : changer la ligne 28 pour insérer le chemin vers le fichier `antsRegistration` 
+- **usage** : 
+	- général : `registration_with_mat.sh <fixed_folder> <moving_folder> <output_folder>`
+	- exemple : `sh registration_with_mat.sh IBSR dataset_brain dataset_brain_reg`
+
+#### apply_transformation.sh  
+- permet de remettre le cerveau à partir des matrices de recalage. Permet d'obtenir des images recalées non skulled
+- **adaptation code** : changer la ligne 26 pour insérer le chemin vers le fichier `antsApplyTransforms`
+- **usage** 
+	- général : `apply_transformation.sh <dataset_brain_reg_folder> <dataset_folder> <dataset_reg_folder>`
+	- exemple : `sh apply_transformation.sh dataset_brain_reg dataset dataset_reg`
+
+#### registration_seg.sh
+- permet de faire le recalage inverse à partir des fichiers .mat du recalage direct. Images fixes : dataset_reg (contient les images IXI/OASIS/Kirby recalées non-skulled=les zones extérieures du cerveau ont été remises). Images mobiles : IBSR_seg (contient les images des atlas segmentées)
+- **adaptation code** : changer la ligne 26 pour insérer le chemin vers le fichier `antsApplyTransforms`
+- **usage** : `sh registration_seg.sh`
+
+#### MajorityVoting.py
+- A partir des images segmentées, il est possible de créer un atlas par le processus de majority voting. Pour chaque image d'origine, 18 images segmentées ont été crées et sont stockées dans un dossier.
+- Le majority voting consiste à regarder, pour chaque pixel, quel label lui a été attribué dans les 18 images segmentées. Ensuite, le label qui lui a été le plus attribué est retenu. Le majority voting crée une image segmentée en prenant en compte le vote majoritaire des 18 images segmentées. 
+- **usage**
+	- général : `MajorityVoting.py <input_folder_seg> <output_folder>`
+	- exemple : `MajorityVoting.py IXI_seg_IBSR IXI_majority`
+
+### Normalisation
+#### BiasCorrection.py
+- permet de normaliser les images
+- **usage**
+	- général : `BiasCorrection.py [-h] input_dir output_dir`
+	- exemple : `BiasCorrection.py [-h] dataset_reg dataset_reg_norm`
+
+### Conversions
 
 #### DICOM to nii file
 - use dcm2niix
@@ -16,69 +63,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 #### nii to mgz file
 - Freesurfer command : `mri_convert image.nii image.mgz`
 
-## Normalisation 
-
-####  Normalisation avec N4filter de simpleITK
-- Cf script biasCorrector.py
-- Sa normalise et lisser les nuances dans les tissus
-
-#### Normalisation avec mri_normalize de Freesurfer
-- faut utiliser `mri_normalize image.mgz image_norm.mgz` et ça marche
-- Les nuances de gris sont "amplifié" mais c'est bien normalisé !
-- `mri_normalize` amplifie uniquement le white matter, je ne sais pas si c'est bien ou pas
-- Mais j'ai trouver https://justinblaber.org/t1-intensity-normalization/ qui devrait me permettre de normaliser les intensitée suivantes : white matter ~ 110 / grey matter ~80 / csf ~ 35 qui utilise les commandes suivantes à parir d'une image T1.mgz:
-```bash
-mri_convert T1.nii.gz T1.mgz
-mri_nu_correct.mni --i T1.mgz --o T1_N3.mgz --n 2
-mri_normalize -g 1 -mprage T1_N3.mgz T1_norm.mgz
-mri_convert T1_norm.mgz T1_norm.nii.gz
-```
-- Par contre il est necessaire d'utiliser une image T1 en entrée dans sa méthode (peut on le faire avec T2 et Flair ?)
-
-
-## Recalage
-
-#### Elastix & Transformix
-- On a abandonné car pas ouf
-
-#### ANTs
-- installer ants avec le fichier .zip
-- Le fichier `antsRegistrationSyN.sh` est le fichier necessaire pour le recadrage
-- C'est bien j'utilise une interpolation linéaire, une transformation rigide et je fais du skull stripping (commande FSL : `bet input output`) au préalable sur les images mobiles T2 et FLAIR car mes images fixes sont tous en T1 et si je fais pas ça le recalage n'est pas optimal.
-
-## Rotations
-- Utilisation de FSL 
-- Commande : `fslswapdim input.nii x y z output.nii`
-
-## Redimensionnement voxel size
-- Nous ont veux avoir toutes les images en **1x1x1** comme ça c'est normalisé
-- On peut modifer une image qui n'est pas en 1x1x1 avec **FSL** : 
-	`fslchpixdim input_image 1 1 1 output_image`
-- Il peut y avoir des impacts d'interpolation :
-	- perte de résolution
-	- Modification intensité voxels
-- Il faut trouver un méthode pour palié à cela ...
-
-## Augmentation de données ?
-- Il suffit simplement de recaler une images sur plusieurs IBSR ( y'en a 18 donc on peut faire x18 la dataset )
-
-## Nomenclature
-### Architecture des fichiers
-├── T1
-│   ├── Patient 1
-│   │   ├── movingimage_fixedimage1.nii
-│   │   ├── movingimage_fixedimage2.nii
-│   │   ├── movingimage_fixedimage3.nii
-│   │   ├── movingimage.csv
-│   ├── Patient 2
-│   │   ├── etc
-│   ├── Patient 3
-│   │   ├── etc
-│   ├── etc
-├── T2
-│   ├── etc
-├── Flair
-│   ├── etc
+## Génération d'un texte associée à chaque image obtenue
 
 ### fichier csv
 - décrit les coupes des volumes d'un patient
