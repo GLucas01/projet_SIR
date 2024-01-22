@@ -139,6 +139,7 @@ for fichier_coupes in inputFiles:
         pattern = re.search(r'([^_]+)_([^_]+)_([^_]+)_([^_]+)\.csv', fichier_coupes)
         if pattern:
             age_fix, genre_fix = extraire_infos(f'{pattern.group(4)}', f'{pattern.group(3)}', chemin_dossier_infos)
+        if pattern.group(1) == 'IBSR':
             modalite = f'{pattern.group(3)}'
 
     # Construire le nom du fichier CSV de sortie

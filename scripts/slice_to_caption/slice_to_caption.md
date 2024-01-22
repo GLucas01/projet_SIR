@@ -10,7 +10,7 @@
 /script
     slice_csv.py
     getKeywords.py
-    /Caption Generation
+    /Caption_Generation
         /en
             gen_leg.py
             generic_leg.txt
@@ -66,7 +66,7 @@ Coronal,33,"(256, 136)","[('Unknown', '36650.3250'), ('cortex of right cerebral 
 
 # Création des descriptions
 *run in script*
-python3 ./Caption Generation/en/gen_leg.py <InputFolder>
+python3 ./Caption_Generation/en/gen_leg.py <InputFolder>
 
 En paramètre, le dossier contenant les fichiers csv header et coupes (Keywords_csv)
 

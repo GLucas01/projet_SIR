@@ -76,20 +76,42 @@ def extraire_descriptions_pour_toutes_les_lignes(chemin_csv_header, chemin_csv_l
         textes_choisis = textes_par_coupe.get(coupe, textes_par_coupe)
 
         for _ in range(5):
+            age_mov_null = False
+            genre_fix_null = ""
             texte_original_choisi = random.choice(textes_choisis)
             for colonne, valeur in valeurs_ligne_header.items():
-                if colonne == 'genre_fix':
-                    valeur = convertir_genre_en_mot(valeur)
-                    texte_original_choisi = texte_original_choisi.replace("[genre]", str(valeur))
+                if colonne == 'genre_mov':
+                    genre_fix_null = convertir_genre_en_mot(valeur)
+                elif colonne == 'genre_fix':
+                    if pd.notnull(valeur):
+                        valeur = convertir_genre_en_mot(valeur)
+                        texte_original_choisi = texte_original_choisi.replace("[genre]", str(valeur))
+                    else:
+                        texte_original_choisi = texte_original_choisi.replace("[genre]", genre_fix_null)
                 elif colonne == 'age_mov':
                     if pd.notnull(valeur):
                         if valeur == "JUV":
                             valeur = "juvenile"
                         else:
-                            valeur = f" of {int(valeur)} years old"
+                            if isinstance(valeur, str):
+                                valeur = f" of {''.join(char if char.isdigit() or char == ',' else '' for char in valeur).split(',')[0]} years old"
+                            else:
+                                valeur = f" of {int(valeur)} years old"
+                        texte_original_choisi = texte_original_choisi.replace("[age]", str(valeur))
                     else:
-                        valeur = "" 
-                    texte_original_choisi = texte_original_choisi.replace("[age]", str(valeur))
+                        age_mov_null = True
+                elif colonne == 'age_fix' and age_mov_null:
+                    if pd.notnull(valeur):
+                        if valeur == "JUV":
+                            valeur = "juvenile"
+                        else:
+                            if isinstance(valeur, str):
+                                valeur = f" of {''.join(char if char.isdigit() or char == ',' else '' for char in valeur).split(',')[0]} years old"
+                            else:
+                                valeur = f" of {int(valeur)} years old"
+                        texte_original_choisi = texte_original_choisi.replace("[age]", str(valeur))
+                    else:
+                        texte_original_choisi = texte_original_choisi.replace("[age]", '')
                 else: 
                     texte_original_choisi = texte_original_choisi.replace(f"[{colonne}]", str(valeur))
 
@@ -132,7 +154,7 @@ header_files = [f for f in os.listdir(inputFolder) if f.endswith("header.csv")]
 coupes_files = [f for f in os.listdir(inputFolder) if f.endswith("coupes.csv")]
 
 
-chemin_textes = "./Caption Generation/en/generic_leg.txt"
+chemin_textes = "./Caption_Generation/en/generic_leg.txt"
 
 for header_file in header_files:
     chemin_du_csv_header = os.path.join(inputFolder, header_file)
