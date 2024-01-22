@@ -30,8 +30,9 @@ En paramètre, le dossier contenant les volumes en format .nii.gz
 - Les segmentations des images IXI, OASIS ou Kirby21 réalisé en majority voting après recalage de tout les IBSR doivent contenir "majority" dans leurs noms.
 
 
-> output: ./data/Slice_csv/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}.csv
+> output: ./data/Slice_csv/{modalite}/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}.csv
 Avec, Im_mov et Im_fix = T1, T2, FL ou IBSR
+Avec modalite = T1, T2 ou FL en fonction de la base de donnée utilisée, respectivement OASIS, IXI ou Kirby21
 
 Le contenu du fichier: [coupe, num coupe, dimensions,voxel, labels]
 Exemple:IBSR_01_T2_035.csv
@@ -48,8 +49,8 @@ python3 getKeywords.py <InputFolder>
 
 En paramètre, le dossier contenant les fichiers csv extraits (Slice_csv)
 
-> output: ./data/Keywords_csv/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}_header.csv
-> output: ./data/Keywords_csv/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}_coupes.csv
+> output: ./data/Keywords_csv/{modalite}/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}_header.csv
+> output: ./data/Keywords_csv/{modalite}/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}_coupes.csv
 
 Le contenu du fichier header: [modalite, genre_mov, age_mov, genre_fix, genre_fix, Sx, Sy, Sz]
 Exemple:IBSR_01_T2_035_header.csv
@@ -70,7 +71,7 @@ python3 ./Caption_Generation/en/gen_leg.py <InputFolder>
 
 En paramètre, le dossier contenant les fichiers csv header et coupes (Keywords_csv)
 
-> output: ./data/Keywords_csv/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}_{coupe}_{num coupe}.csv
+> output: ./data/Keywords_csv/{modalite}/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}/{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}_{coupe}_{num coupe}.csv
 
 Les fichiers de sorties contiennent une seule colonne avec 5 descriptions différentes associées à une coupe
 

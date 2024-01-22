@@ -13,10 +13,17 @@ inputFolder = sys.argv[1]
 
 inputFiles = [f for f in os.listdir(inputFolder) if f.endswith('.nii.gz')]
 
-chemin_output = "../data/Slice_csv"
-if not os.path.exists(chemin_output):
-    os.makedirs(chemin_output)
+chemin_output_T1 = "../data/Slice_csv/T1"
+if not os.path.exists(chemin_output_T1):
+    os.makedirs(chemin_output_T1)
 
+chemin_output_T2 = "../data/Slice_csv/T2"
+if not os.path.exists(chemin_output_T2):
+    os.makedirs(chemin_output_T2)
+    
+chemin_output_FL = "../data/Slice_csv/FL"
+if not os.path.exists(chemin_output_FL):
+    os.makedirs(chemin_output_FL)
 
 def getTypeID(inputFile):
     if "FLAIR" in inputFile:
@@ -97,7 +104,12 @@ for inputFile in inputFiles:
 
         csv_file = f"{typeIRM}_{BD_ID}_IBSR_{IBSR_ID}.csv"
         # Chemin vers le fichier CSV de sortie
-        chemin_csv_sortie = os.path.join(chemin_output, csv_file)
+        if typeIRM == "T1":
+            chemin_csv_sortie = os.path.join(chemin_output_T1, csv_file)
+        elif typeIRM == "T2":
+            chemin_csv_sortie = os.path.join(chemin_output_T2, csv_file)
+        else:
+            chemin_csv_sortie = os.path.join(chemin_output_FL, csv_file)
 
         colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
         with open(chemin_csv_sortie, 'a', newline='') as csvfile:
@@ -122,7 +134,12 @@ for inputFile in inputFiles:
 
         csv_file = f"IBSR_{IBSR_ID}_{typeIRM}_{BD_ID}.csv"
         # Chemin vers le fichier CSV de sortie
-        chemin_csv_sortie = os.path.join(chemin_output, csv_file)
+        if typeIRM == "T1":
+            chemin_csv_sortie = os.path.join(chemin_output_T1, csv_file)
+        elif typeIRM == "T2":
+            chemin_csv_sortie = os.path.join(chemin_output_T2, csv_file)
+        else:
+            chemin_csv_sortie = os.path.join(chemin_output_FL, csv_file)
 
         colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
 
@@ -145,7 +162,12 @@ for inputFile in inputFiles:
 
         csv_file = f"{typeIRM}_{BD_ID}_majority.csv"
         # Chemin vers le fichier CSV de sortie
-        chemin_csv_sortie = os.path.join(chemin_output, csv_file)
+        if typeIRM == "T1":
+            chemin_csv_sortie = os.path.join(chemin_output_T1, csv_file)
+        elif typeIRM == "T2":
+            chemin_csv_sortie = os.path.join(chemin_output_T2, csv_file)
+        else:
+            chemin_csv_sortie = os.path.join(chemin_output_FL, csv_file)
 
         colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
         with open(chemin_csv_sortie, 'a', newline='') as csvfile:

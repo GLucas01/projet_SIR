@@ -8,9 +8,17 @@ import re
 chemin_dossier_infos = "../data/Keywords"
 
 # Chemin vers dossier final
-chemin_output = "../data/Keywords_csv"
-if not os.path.exists(chemin_output):
-    os.makedirs(chemin_output)
+chemin_output_T1 = "../data/Keywords_csv/T1"
+if not os.path.exists(chemin_output_T1):
+    os.makedirs(chemin_output_T1)
+
+chemin_output_T2 = "../data/Keywords_csv/T2"
+if not os.path.exists(chemin_output_T2):
+    os.makedirs(chemin_output_T2)
+    
+chemin_output_FL = "../data/Keywords_csv/FL"
+if not os.path.exists(chemin_output_FL):
+    os.makedirs(chemin_output_FL)
 
 # Chemin vers dossiers contenant les fichiers csv des coupes
 if len(sys.argv) != 2:
@@ -147,7 +155,12 @@ for fichier_coupes in inputFiles:
     nom_fichier_sortie = f'{nom_fichier_sans_extension}_header.csv'
 
     # Chemin vers le fichier CSV de sortie
-    chemin_csv_sortie = os.path.join(chemin_output, nom_fichier_sortie)
+    if modalite == "T1":
+            chemin_csv_sortie = os.path.join(chemin_output_T1, nom_fichier_sortie)
+    elif modalite == "T2":
+        chemin_csv_sortie = os.path.join(chemin_output_T2, nom_fichier_sortie)
+    else:
+        chemin_csv_sortie = os.path.join(chemin_output_FL, nom_fichier_sortie)
 
     # Noms des colonnes
     colonnes = ["modalite", "genre_mov", "age_mov","genre_fix","genre_fix", "Sx", "Sy", "Sz"]
@@ -178,8 +191,13 @@ for fichier_coupes in inputFiles:
     nom_fichier_sortie = f'{nom_fichier_sans_extension}_coupes.csv'
 
     # Chemin vers le fichier CSV de sortie
-    chemin_csv_sortie = os.path.join(chemin_output, nom_fichier_sortie)
+    if modalite == "T1":
+            chemin_csv_sortie = os.path.join(chemin_output_T1, nom_fichier_sortie)
+    elif modalite == "T2":
+        chemin_csv_sortie = os.path.join(chemin_output_T2, nom_fichier_sortie)
+    else:
+        chemin_csv_sortie = os.path.join(chemin_output_FL, nom_fichier_sortie)
 
     # Appeler la fonction
     modifier_id_par_labels(chemin_fichier_coupes, os.path.join(chemin_dossier_infos, "Anatomie.csv"), chemin_csv_sortie)
-print(f"Les données ont été écrites dans les fichiers CSV dans le dossier : {chemin_output}")
+print(f"Les données ont été écrites dans les fichiers CSV dans le dossier : ../data/Keywords_csv")
