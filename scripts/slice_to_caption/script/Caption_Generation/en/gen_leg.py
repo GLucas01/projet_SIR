@@ -158,7 +158,8 @@ for header_file in header_files:
         pattern = re.search(r'([^_]+)_([^_]+)_', nom_fichier)
         chemin_output = f"../data/Captions/{pattern.group(1)}/{nom_fichier}"
     else:
-        pattern = re.search(r'([^_]+)_([^_]+)_([^_]+)_([^_]+)\.csv', nom_fichier)
+        pattern = re.search(r'([^_]+)_([^_]+)_([^_]+)_([^_]+)', nom_fichier)
+        print (pattern)
         if pattern.group(1) == 'IBSR':
             chemin_output = f"../data/Captions/{pattern.group(3)}/{nom_fichier}"
         else:

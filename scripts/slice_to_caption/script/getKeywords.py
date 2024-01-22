@@ -20,6 +20,10 @@ chemin_output_FL = "../data/Keywords_csv/FL"
 if not os.path.exists(chemin_output_FL):
     os.makedirs(chemin_output_FL)
 
+chemin_output_IBSR = "../data/Keywords_csv/IBSR"
+if not os.path.exists(chemin_output_IBSR):
+    os.makedirs(chemin_output_IBSR)
+
 # Chemin vers dossiers contenant les fichiers csv des coupes
 if len(sys.argv) != 2:
     print("Usage: python3 mon_script.py <inputFolder>")
@@ -114,7 +118,7 @@ def modifier_id_par_labels(chemin_fichier_coupes, chemin_fichier_anatomie, chemi
             labels_list = ast.literal_eval(labels_str)  # Convertir la chaîne en liste
 
             # Remplacer les ID par les correspondances de labels et modifier la valeur du nombre de pixels
-            labels_correspondants = [(correspondances.get(str(id), ""), "{:.4f}".format(pixels * Sx * Sy * Sz)) for id, pixels in labels_list]
+            labels_correspondants = [(correspondances.get(str(id), ""), "{:.4f}".format(pixels*Sx*Sy*Sz)) for id, pixels in labels_list]
             # Définir la dimension en fonction de la coupe
             dimension = ligne["dimensions"]
 
@@ -152,15 +156,23 @@ for fichier_coupes in inputFiles:
 
     # Construire le nom du fichier CSV de sortie
     nom_fichier_sans_extension = os.path.splitext(fichier_coupes)[0]
-    nom_fichier_sortie = f'{nom_fichier_sans_extension}_header.csv'
+    nom_fichier_sortie_header = f'{nom_fichier_sans_extension}_header.csv'
+    nom_fichier_sortie_coupe = f'{nom_fichier_sans_extension}_coupes.csv'
 
     # Chemin vers le fichier CSV de sortie
     if modalite == "T1":
-            chemin_csv_sortie = os.path.join(chemin_output_T1, nom_fichier_sortie)
+        chemin_csv_sortie_header = os.path.join(chemin_output_T1, nom_fichier_sortie_header)
+        chemin_csv_sortie_coupe = os.path.join(chemin_output_T1, nom_fichier_sortie_coupe)
     elif modalite == "T2":
-        chemin_csv_sortie = os.path.join(chemin_output_T2, nom_fichier_sortie)
+        chemin_csv_sortie_header = os.path.join(chemin_output_T2, nom_fichier_sortie_header)
+        chemin_csv_sortie_coupe = os.path.join(chemin_output_T2, nom_fichier_sortie_coupe)
+    elif modalite == "IBSR":
+        chemin_csv_sortie_header = os.path.join(chemin_output_IBSR, nom_fichier_sortie_header)
+        chemin_csv_sortie_coupe = os.path.join(chemin_output_IBSR, nom_fichier_sortie_coupe)
+        modalite = "T1"
     else:
-        chemin_csv_sortie = os.path.join(chemin_output_FL, nom_fichier_sortie)
+        chemin_csv_sortie_header = os.path.join(chemin_output_FL, nom_fichier_sortie_header)
+        chemin_csv_sortie_coupe = os.path.join(chemin_output_FL, nom_fichier_sortie_coupe)
 
     # Noms des colonnes
     colonnes = ["modalite", "genre_mov", "age_mov","genre_fix","genre_fix", "Sx", "Sy", "Sz"]
@@ -171,13 +183,13 @@ for fichier_coupes in inputFiles:
 
         # Extraire les valeurs de Sx, Sy et Sz
         voxel = next(reader)['voxel']
-        Sx, Sy, Sz = map(float, voxel.strip('()').split(','))
+        Sx, Sy, Sz = map(float, voxel.strip('()').split(',')[:3])
 
     # Ajouter les données à la liste
     donnees = [modalite, genre_mov, age_mov,genre_fix,age_fix, Sx, Sy, Sz]
 
     # Ouvrir le fichier CSV en mode append
-    with open(chemin_csv_sortie, mode='w', newline='') as fichier_csv:
+    with open(chemin_csv_sortie_header, mode='w', newline='') as fichier_csv:
         writer = csv.writer(fichier_csv)
 
         # Écrire les noms des colonnes
@@ -186,18 +198,6 @@ for fichier_coupes in inputFiles:
         # Écrire les données dans le fichier CSV de sortie
         writer.writerow(donnees)
 
-    # Construire le nom du fichier CSV de sortie
-    nom_fichier_sans_extension = os.path.splitext(fichier_coupes)[0]
-    nom_fichier_sortie = f'{nom_fichier_sans_extension}_coupes.csv'
-
-    # Chemin vers le fichier CSV de sortie
-    if modalite == "T1":
-            chemin_csv_sortie = os.path.join(chemin_output_T1, nom_fichier_sortie)
-    elif modalite == "T2":
-        chemin_csv_sortie = os.path.join(chemin_output_T2, nom_fichier_sortie)
-    else:
-        chemin_csv_sortie = os.path.join(chemin_output_FL, nom_fichier_sortie)
-
     # Appeler la fonction
-    modifier_id_par_labels(chemin_fichier_coupes, os.path.join(chemin_dossier_infos, "Anatomie.csv"), chemin_csv_sortie)
+    modifier_id_par_labels(chemin_fichier_coupes, os.path.join(chemin_dossier_infos, "Anatomie.csv"), chemin_csv_sortie_coupe)
 print(f"Les données ont été écrites dans les fichiers CSV dans le dossier : ../data/Keywords_csv")

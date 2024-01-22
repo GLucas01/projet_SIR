@@ -24,6 +24,10 @@ if not os.path.exists(chemin_output_T2):
 chemin_output_FL = "../data/Slice_csv/FL"
 if not os.path.exists(chemin_output_FL):
     os.makedirs(chemin_output_FL)
+    
+chemin_output_IBSR = "../data/Slice_csv/IBSR"
+if not os.path.exists(chemin_output_IBSR):
+    os.makedirs(chemin_output_IBSR)
 
 def getTypeID(inputFile):
     if "FLAIR" in inputFile:
@@ -88,8 +92,6 @@ for inputFile in inputFiles:
 
     if "reg_IBSR" in inputFile :
 
-        typeIRM,BD_ID = getTypeID(inputFile)
-
         for i in range(1, 19):
             if i < 10:
                 i = "0" + str(i)
@@ -102,17 +104,23 @@ for inputFile in inputFiles:
         fixedImage = nib.load(fixedImagePath)
         sliceArray = getSlicesSeg(fixedImage)
 
-        csv_file = f"{typeIRM}_{BD_ID}_IBSR_{IBSR_ID}.csv"
-        # Chemin vers le fichier CSV de sortie
-        if typeIRM == "T1":
-            chemin_csv_sortie = os.path.join(chemin_output_T1, csv_file)
-        elif typeIRM == "T2":
-            chemin_csv_sortie = os.path.join(chemin_output_T2, csv_file)
-        else:
-            chemin_csv_sortie = os.path.join(chemin_output_FL, csv_file)
+        pattern = re.search(r'IBSR_(\d+)_ana_reg_IBSR_(\d+)_ana_norm.nii.gz', inputFile)
+        if pattern : 
+            csv_file = f"IBSR_{pattern.group(1)}_IBSR_{pattern.group(2)}.csv"
+            chemin_csv_sortie = os.path.join(chemin_output_IBSR, csv_file)
+        else :
+            typeIRM,BD_ID = getTypeID(inputFile)
+            csv_file = f"{typeIRM}_{BD_ID}_IBSR_{IBSR_ID}.csv"
+            # Chemin vers le fichier CSV de sortie
+            if typeIRM == "T1":
+                chemin_csv_sortie = os.path.join(chemin_output_T1, csv_file)
+            elif typeIRM == "T2":
+                chemin_csv_sortie = os.path.join(chemin_output_T2, csv_file)
+            else:
+                chemin_csv_sortie = os.path.join(chemin_output_FL, csv_file)
 
         colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
-        with open(chemin_csv_sortie, 'a', newline='') as csvfile:
+        with open(chemin_csv_sortie, 'w', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(colonnes)
         with open(chemin_csv_sortie, 'a', newline='') as csvfile:
@@ -143,7 +151,7 @@ for inputFile in inputFiles:
 
         colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
 
-        with open(chemin_csv_sortie, 'a', newline='') as csvfile:
+        with open(chemin_csv_sortie, 'w', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(colonnes)
         with open(chemin_csv_sortie, 'a', newline='') as csvfile:
@@ -170,7 +178,7 @@ for inputFile in inputFiles:
             chemin_csv_sortie = os.path.join(chemin_output_FL, csv_file)
 
         colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
-        with open(chemin_csv_sortie, 'a', newline='') as csvfile:
+        with open(chemin_csv_sortie, 'w', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(colonnes)
         with open(chemin_csv_sortie, 'a', newline='') as csvfile:
@@ -178,6 +186,6 @@ for inputFile in inputFiles:
             csv_writer.writerows(sliceArray)
 
         print(f"Le fichier {inputFile} a été traité et le CSV a été enregistré dans {csv_file}.")
-
+    
     else:
         print("Le fichier n'est pas valide.")
