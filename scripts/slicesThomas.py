@@ -1,5 +1,5 @@
 """ 
-Auteur : Thomas
+
 Récuprérer des informations sur une coupe des images résutlantes à partir d'un dossier contenant des images au format nii.gz. :
 
 - Le type de l'image mobile (FLAIR, T1, T2)
@@ -54,8 +54,9 @@ for inputFile in inputFiles:
             i = "0" + str(i)
         else:
             i = str(i)
-        if f"IBSR_{i}_" in inputFile:
-            fixedImagePath = f"../Data/IBSR_fixed_images/seg/IBSR_{i}_seg_ana.nii.gz"
+        
+        if f"IBSR_{i}" in inputFile or f"IBSR_{i}_" in inputFile:
+            fixedImagePath = f"/Users/Admin/Documents/4TC/SIR/seg/IBSR_{i}_seg_ana.nii.gz"
 
     fixedImage = sitk.ReadImage(fixedImagePath)
     arrayFixedImage = sitk.GetArrayFromImage(fixedImage)
@@ -84,7 +85,14 @@ for inputFile in inputFiles:
         resultats_comptage = list(zip(unique_values, counts))
         sliceArray.append(["Sagittal", i, resultats_comptage])
 
-    # --------------------------------------------------------------------------------
+        
+    # Obtenir le voxel size de l'image
+    voxel_size = fixedImage.GetSpacing()
+
+    # Ajouter le voxel size à chaque ligne de sliceArray
+    for i in range(len(sliceArray)):
+        sliceArray[i].append(voxel_size)
+
     # Enregistrer au format CSV
     csv_file = os.path.join(inputFolder, f"{inputFile[:-7]}.csv")
 

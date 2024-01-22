@@ -3,13 +3,13 @@ import ast
 import os
 
 # Chemin vers les fichiers info.csv
-chemin_dossier_infos = r'C:\Users\Admin\Documents\4TC\SIR\code_coupe\infos_keywords'
+chemin_dossier_infos = r'C:\Users\Admin\Documents\4TC\SIR\infos_keywords'
 
 # Chemin vers le dossier contenant les fichiers CSV des coupes
-chemin_dossier_coupes = r'C:\Users\Admin\Documents\4TC\SIR\code_coupe\data_keywords'
+chemin_dossier_coupes = r'C:\Users\Admin\Documents\4TC\SIR\DATA\FLAIR_csv'
 
 # Chemin vers le fichier anatomie.csv
-chemin_fichier_anatomie = r'C:\Users\Admin\Documents\4TC\SIR\code_coupe\infos_keywords\Anatomie.csv'
+chemin_fichier_anatomie = r'C:\Users\Admin\Documents\4TC\SIR\infos_keywords\Anatomie.csv'
 
 
 
@@ -108,18 +108,31 @@ for fichier_coupes in os.listdir(chemin_dossier_coupes):
         nom_fichier_sortie = f'{nom_fichier_sans_extension}_header.csv'
 
         # Chemin vers le fichier CSV de sortie
-        chemin_csv_sortie = os.path.join(r'C:\Users\Admin\Documents\4TC\SIR\code_coupe\Keywords_csv', nom_fichier_sortie)
+        chemin_csv_sortie = os.path.join(r'C:\Users\Admin\Documents\4TC\SIR\DATA\FLAIR_csv3', nom_fichier_sortie)
 
         # Noms des colonnes
         colonnes = ["modalite", "genre", "age", "Sx", "Sy", "Sz"]
 
         # Lire le fichier coupes
-        with open(fichier_coupes, 'r') as f:
+        with open(chemin_fichier_coupes, 'r') as f:
             first_line = f.readline()
 
-        # Extraire les valeurs de Sx, Sy et Sz de la 4ème colonne de la première ligne
-        columns = first_line.split()
-        Sx, Sy, Sz = map(float, columns[3].strip('()').split(','))
+        # Extraire les valeurs de Sx, Sy et Sz de la première ligne
+        
+        columns = first_line.split(',')
+
+        # Extract the fourth column
+        fourth_column = columns[4] + columns[5] + columns[6]
+        fourth_column = fourth_column.replace('"', '').replace('(','').replace(')','')
+                                      
+    
+
+       
+
+        # Split the fourth column on spaces and assign the values to Sx, Sy, Sz
+        Sx, Sy, Sz = map(float, fourth_column.split())
+
+        
 
         # Ajouter les données à la liste
         donnees = [donnees_nom_fichier[0], genre, age, Sx, Sy, Sz]
@@ -130,10 +143,10 @@ for fichier_coupes in os.listdir(chemin_dossier_coupes):
 
             # Écrire les noms des colonnes
             writer.writerow(colonnes)
-
+            
             # Écrire les données dans le fichier CSV de sortie
             writer.writerow(donnees)
-print(f"Les données ont été écrites dans les fichiers CSV dans le dossier : {chemin_dossier_coupes}")
+print(f"Les données ont été écrites dans les fichiers CSV dans le dossier ")
 
 
 
@@ -161,7 +174,7 @@ def modifier_id_par_labels(chemin_fichier_coupes, chemin_fichier_anatomie, chemi
         for ligne in reader:
             labels_str = ligne[2]  # La troisième colonne contient la valeur des labels
             labels_list = ast.literal_eval(labels_str)  # Convertir la chaîne en liste
-
+            
             # Remplacer les ID par les correspondances de labels et modifier la valeur du nombre de pixels
             labels_correspondants = [(correspondances.get(str(id), ""), pixels * Sx * Sy * Sz) for id, pixels in labels_list]
             # Définir la dimension en fonction de la coupe
@@ -193,7 +206,7 @@ for fichier_coupes in fichiers_coupes:
     nom_fichier_sortie = f'{nom_fichier_sans_extension}_coupes.csv'
 
     # Chemin vers le fichier CSV de sortie
-    chemin_csv_sortie = os.path.join(r'C:\Users\Admin\Documents\4TC\SIR\code_coupe\Keywords_csv', nom_fichier_sortie)
+    chemin_csv_sortie = os.path.join(r'C:\Users\Admin\Documents\4TC\SIR\DATA\FLAIR_csv3', nom_fichier_sortie)
 
     # Appeler la fonction
     modifier_id_par_labels(chemin_fichier_coupes, chemin_fichier_anatomie, chemin_csv_sortie)
