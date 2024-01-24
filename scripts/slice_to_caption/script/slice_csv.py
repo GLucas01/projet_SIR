@@ -13,49 +13,114 @@ inputFolder = sys.argv[1]
 
 inputFiles = [f for f in os.listdir(inputFolder) if f.endswith('.nii.gz')]
 
-chemin_output_T1 = "../data/Slice_csv/T1"
-if not os.path.exists(chemin_output_T1):
-    os.makedirs(chemin_output_T1)
+chemin_output = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Slice_csv")
+if not os.path.exists(chemin_output):
+    os.makedirs(chemin_output)
 
-chemin_output_T2 = "../data/Slice_csv/T2"
-if not os.path.exists(chemin_output_T2):
-    os.makedirs(chemin_output_T2)
+
+def getInfo(inputFile):
     
-chemin_output_FL = "../data/Slice_csv/FL"
-if not os.path.exists(chemin_output_FL):
-    os.makedirs(chemin_output_FL)
+    #Im_fix
+    ID_fix = ""
+    Im_fix = ""
+    pattern_fix = re.search(r'reg_KKI2009-(\d+)', inputFile)
+    if pattern_fix:
+        ID_fix = f"{pattern_fix.group(1)}"
+        Im_fix = "KKI"
+
+
+    pattern_fix = re.search(r'reg_OAS1_(\d+)', inputFile)
+    if pattern_fix:
+        ID_fix = f"{pattern_fix.group(1)}"
+        Im_fix = "OAS"
+
+
+    pattern_fix = re.search(r'reg_IXI(\d+)', inputFile)
+    if pattern_fix:
+        ID_fix = f"{pattern_fix.group(1)}"
+        Im_fix = "IXI"
+        
+        
+    pattern_fix = re.search(r'reg_IBSR_(\d+)', inputFile)
+    if pattern_fix:
+        ID_fix = f"{pattern_fix.group(1)}"
+        Im_fix = "IBSR"
     
-chemin_output_IBSR = "../data/Slice_csv/IBSR"
-if not os.path.exists(chemin_output_IBSR):
-    os.makedirs(chemin_output_IBSR)
+    #Im_mov
+    ID_mov = ""
+    Im_mov = ""
+    pattern_mov = re.search(r'^KKI2009-(\d+)', inputFile)
+    if pattern_mov:
+        ID_mov = f"{pattern_mov.group(1)}"
+        Im_mov = "KKI"
 
-def getTypeID(inputFile):
-    if "FLAIR" in inputFile:
-        typeIRM = "FL"
 
-        pattern = re.search(r'KKI2009-(\d+)', inputFile)
-        if pattern:
-            BD_ID = f"{pattern.group(1)}"
+    pattern_mov = re.search(r'^OAS1_(\d+)', inputFile)
+    if pattern_mov:
+        ID_mov = f"{pattern_mov.group(1)}"
+        Im_mov = "OAS"
 
-    elif "OAS" in inputFile:
-        typeIRM = "T1"
 
-        pattern = re.search(r'OAS1_(\d+)', inputFile)
-        if pattern:
-            BD_ID = f"{pattern.group(1)}"
+    pattern_mov = re.search(r'^IXI(\d+)', inputFile)
+    if pattern_mov:
+        ID_mov = f"{pattern_mov.group(1)}"
+        Im_mov = "IXI"
+        
+        
+    pattern_mov = re.search(r'^IBSR_(\d+)', inputFile)
+    if pattern_mov:
+        ID_mov = f"{pattern_mov.group(1)}"
+        Im_mov = "IBSR"
+              
+    return Im_mov, ID_mov, Im_fix, ID_fix
 
-    elif "T2" in inputFile:
-        typeIRM = "T2"
+def fixPath (Im_fix, ID):
+    if Im_fix == "IBSR":
+        pathFile = "../data/T1/IBSR/seg"
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"IBSR_{ID}" in file:
+                fixedPath = os.path.join(pathFile,file)
 
-        pattern = re.search(r'IXI(\d+)', inputFile)
-        if pattern:
-            BD_ID = f"{pattern.group(1)}"
-
+    elif Im_fix == "IXI":
+        pathFile = "../data/T2/IXI/seg"
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"IXI{ID}" in file:
+                fixedPath = os.path.join(pathFile,file)
+        
+    elif Im_fix == "OAS":
+        pathFile = "../data/T1/OASIS/seg"
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"OAS1_{ID}" in file:
+                fixedPath = os.path.join(pathFile,file)
+        
+    elif Im_fix == "KKI":
+        pathFile = "../data/FL/Kirby/seg"
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"KKI2009-{ID}" in file:
+                fixedPath = os.path.join(pathFile,file)
+        
     else:
-        typeIRM = "none"
-        BD_ID = "none"
+        print("No fixed image found")
+        fixedPath = ""
     
-    return typeIRM,BD_ID
+    return fixedPath
+
+def findSegIBSR (inputFile, ID_mov):
+    #Cas de la transformé inverse
+    if "inv" in inputFile:
+        pathFile = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"seg_inverse")
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"seg_IBSR_{ID_mov}" in file:
+                fixedPath = os.path.join(pathFile,file)
+    ##ATENTION
+    #Autres cas non pris en compte pour le moment
+    
+    return fixedPath
 
 def getSlicesSeg (inputImage):
     
@@ -90,34 +155,20 @@ def getSlicesSeg (inputImage):
 for inputFile in inputFiles:
     inputFilePath = os.path.join(inputFolder, inputFile)
 
-    if "reg_IBSR" in inputFile :
+    if "reg" in inputFile :
 
-        for i in range(1, 19):
-            if i < 10:
-                i = "0" + str(i)
-            else:
-                i = str(i)
-            if f"IBSR_{i}_" in inputFile:
-                fixedImagePath = f"../data/IBSR_seg/IBSR_{i}_seg_ana.nii.gz"
-                IBSR_ID = f"{i}"
-
+        Im_mov, ID_mov, Im_fix, ID_fix = getInfo(inputFile)
+        #cas particulier IBSR est l'image mouvante 
+        if Im_mov == "IBSR":
+            fixedImagePath = findSegIBSR(inputFile, ID_mov)
+        else :
+            fixedImagePath = fixPath(Im_fix, ID_fix)
+        print(fixedImagePath)
         fixedImage = nib.load(fixedImagePath)
         sliceArray = getSlicesSeg(fixedImage)
 
-        pattern = re.search(r'IBSR_(\d+)_ana_reg_IBSR_(\d+)_ana_norm.nii.gz', inputFile)
-        if pattern : 
-            csv_file = f"IBSR_{pattern.group(1)}_IBSR_{pattern.group(2)}.csv"
-            chemin_csv_sortie = os.path.join(chemin_output_IBSR, csv_file)
-        else :
-            typeIRM,BD_ID = getTypeID(inputFile)
-            csv_file = f"{typeIRM}_{BD_ID}_IBSR_{IBSR_ID}.csv"
-            # Chemin vers le fichier CSV de sortie
-            if typeIRM == "T1":
-                chemin_csv_sortie = os.path.join(chemin_output_T1, csv_file)
-            elif typeIRM == "T2":
-                chemin_csv_sortie = os.path.join(chemin_output_T2, csv_file)
-            else:
-                chemin_csv_sortie = os.path.join(chemin_output_FL, csv_file)
+        csv_file = f"{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}.csv"
+        chemin_csv_sortie = os.path.join(chemin_output, csv_file)
 
         colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
         with open(chemin_csv_sortie, 'w', newline='') as csvfile:
@@ -128,54 +179,35 @@ for inputFile in inputFiles:
             csv_writer.writerows(sliceArray)
 
         print(f"Le fichier {inputFile} a été traité et le CSV a été enregistré dans {csv_file}.")
-
-    elif "seg_IBSR" in inputFile:
-
-        typeIRM,BD_ID = getTypeID(inputFile)
-        pattern = re.search(r'IBSR_(\d+)', inputFile)
-        if pattern:
-            IBSR_ID = f"{pattern.group(1)}"
-
-        image = nib.load(inputFilePath)
-
-        sliceArray = getSlicesSeg(image)
-
-        csv_file = f"IBSR_{IBSR_ID}_{typeIRM}_{BD_ID}.csv"
-        # Chemin vers le fichier CSV de sortie
-        if typeIRM == "T1":
-            chemin_csv_sortie = os.path.join(chemin_output_T1, csv_file)
-        elif typeIRM == "T2":
-            chemin_csv_sortie = os.path.join(chemin_output_T2, csv_file)
-        else:
-            chemin_csv_sortie = os.path.join(chemin_output_FL, csv_file)
-
-        colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
-
-        with open(chemin_csv_sortie, 'w', newline='') as csvfile:
-            csv_writer = csv.writer(csvfile)
-            csv_writer.writerow(colonnes)
-        with open(chemin_csv_sortie, 'a', newline='') as csvfile:
-            csv_writer = csv.writer(csvfile)
-            csv_writer.writerows(sliceArray)
-
-        print(f"Le fichier {inputFile} a été traité et le CSV a été enregistré dans {csv_file}.")
-
 
     elif "majority" in inputFile:
-        typeIRM,BD_ID = getTypeID(inputFile)
-
+        
+        Im_mov,ID_mov, Im_fix, ID_fix= getInfo(inputFile)
         image = nib.load(inputFilePath)
-
         sliceArray = getSlicesSeg(image)
 
-        csv_file = f"{typeIRM}_{BD_ID}_majority.csv"
-        # Chemin vers le fichier CSV de sortie
-        if typeIRM == "T1":
-            chemin_csv_sortie = os.path.join(chemin_output_T1, csv_file)
-        elif typeIRM == "T2":
-            chemin_csv_sortie = os.path.join(chemin_output_T2, csv_file)
-        else:
-            chemin_csv_sortie = os.path.join(chemin_output_FL, csv_file)
+        csv_file = f"{Im_mov}_{ID_mov}_majority.csv"
+        chemin_csv_sortie = os.path.join(chemin_output, csv_file)
+
+        colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
+        with open(chemin_csv_sortie, 'w', newline='') as csvfile:
+            csv_writer = csv.writer(csvfile)
+            csv_writer.writerow(colonnes)
+        with open(chemin_csv_sortie, 'a', newline='') as csvfile:
+            csv_writer = csv.writer(csvfile)
+            csv_writer.writerows(sliceArray)
+
+        print(f"Le fichier {inputFile} a été traité et le CSV a été enregistré dans {csv_file}.")
+    
+    #Cas particulier de la segmentation des IBSR  
+    elif "seg" in inputFile:
+        
+        Im_mov,ID_mov, Im_fix, ID_fix= getInfo(inputFile)
+        image = nib.load(inputFilePath)
+        sliceArray = getSlicesSeg(image)
+
+        csv_file = f"{Im_mov}_{ID_mov}_seg.csv"
+        chemin_csv_sortie = os.path.join(chemin_output, csv_file)
 
         colonnes = ["coupe", "num coupe", "dimensions","voxel", "labels"]
         with open(chemin_csv_sortie, 'w', newline='') as csvfile:

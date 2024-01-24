@@ -2,11 +2,11 @@ import pandas as pd
 import random
 import re, sys, os, ast
 
-def extraire_mots_cles(label):
-    mots_cles = ast.literal_eval(label)
-    return mots_cles
+def extract_labels(label):
+    labels = ast.literal_eval(label)
+    return labels
 
-def generer_version_mots_cles(mots_cles):
+def gen_label_part(mots_cles):
     versions = [
         "We observe {mots_cles} there.",
         "The following elements are present : {mots_cles}.",
@@ -23,111 +23,113 @@ def generer_version_mots_cles(mots_cles):
         "The observed details include: {mots_cles}.",
         "The section reveals the presence of: {mots_cles}."
     ]
-    version_choisie = random.choice(versions)
-    mots_a_retirer = ['Unknown', 'left undetermined', 'right undetermined']
-    mots_cles_filtres = [(mot, nombre) for mot, nombre in mots_cles if mot not in mots_a_retirer]
-    test_list_mot = [mot for mot, nombre in mots_cles_filtres]
-    if not test_list_mot:
+    label_part = random.choice(versions)
+    uselessLabel = ['Unknown', 'left undetermined', 'right undetermined']
+    words = [(word, num) for word, num in mots_cles if word not in uselessLabel]
+    if not [mot for mot, nombre in words]:
         return "We observe nothing there."
     else: 
-        mots_cles_texte = ', '.join([f"the {mot} of volume {nombre} mm³" for mot, nombre in mots_cles_filtres])
-        dernier_mot_index = mots_cles_texte.rfind(', ')
-        if dernier_mot_index != -1:
-            mots_cles_texte = mots_cles_texte[:dernier_mot_index] + ' and ' + mots_cles_texte[dernier_mot_index + 2:]
-        return version_choisie.format(mots_cles=mots_cles_texte)
+        text = ', '.join([f"the {mot} of volume {nombre} mm³" for mot, nombre in words])
+        lastWord_index = text.rfind(', ')
+        if lastWord_index != -1:
+            text = text[:lastWord_index] + ' and ' + text[lastWord_index + 2:]
+        return label_part.format(mots_cles=text)
 
 
-def convertir_genre_en_mot(genre):
+def convert_gender(genre):
     mots_genre = {'M': 'a man', 'F': 'a woman'}
     return mots_genre.get(genre.upper(), genre)
 
-def convertir_coupe(coupe):
+def convert_slice(coupe):
     mots_coupe = {'axial': 'an axial', 'coronal': 'a coronal', 'sagittal': 'a sagittal'}
     return mots_coupe.get(coupe.upper(), coupe)
 
-def lire_textes_par_coupe(chemin_fichier):
-    textes_par_coupe = {}
-    coupe_actuelle = None
+def text_by_slice():
+    text = {}
+    slice = None
 
-    with open(chemin_fichier, 'r', encoding='utf-8') as file:
+    with open(textPath, 'r', encoding='utf-8') as file:
         for line in file:
             line = line.strip()
             if not line:
                 continue
 
             if line in ['axial', 'coronal', 'sagittal']:
-                coupe_actuelle = line
-                textes_par_coupe[coupe_actuelle] = []
+                slice = line
+                text[slice] = []
             else:
-                textes_par_coupe[coupe_actuelle].append(line)
+                text[slice].append(line)
 
-    return textes_par_coupe
+    return text
 
-def extraire_descriptions_pour_toutes_les_lignes(chemin_csv_header, chemin_csv_label, chemin_textes, chemin_output):
-    df_header = pd.read_csv(chemin_csv_header)
-    df_label = pd.read_csv(chemin_csv_label)
+def extract_captions(filePath_header, filePath_coupes, outputPath_final):
+    df_header = pd.read_csv(filePath_header)
+    df_label = pd.read_csv(filePath_coupes)
 
     for index_ligne in range(len(df_label)):
-        descriptions_modifiees = []
-        valeurs_ligne_header = df_header.iloc[0]
-        valeurs_ligne_label = df_label.iloc[index_ligne]
+        modifCaption = []
+        headerLine = df_header.iloc[0]
+        labelLine = df_label.iloc[index_ligne]
 
-        coupe = valeurs_ligne_label['coupe']
-        textes_par_coupe = lire_textes_par_coupe(chemin_textes)
-        textes_choisis = textes_par_coupe.get(coupe, textes_par_coupe)
+        coupe = labelLine['coupe']
+        text = text_by_slice()
+        sliceText = text.get(coupe, text)
 
         for _ in range(5):
             age_mov_null = False
             genre_fix_null = ""
-            texte_original_choisi = random.choice(textes_choisis)
+            caption = random.choice(sliceText)
 
-            for colonne, valeur in valeurs_ligne_header.items():
+            for colonne, valeur in headerLine.items():
+                # Sélection du genre de l'image fixe en priorité
                 if colonne == 'genre_mov':
-                    genre_fix_null = convertir_genre_en_mot(valeur)
+                    genre_fix_null = convert_gender(valeur)
                 elif colonne == 'genre_fix':
-                    valeur = convertir_genre_en_mot(valeur) if pd.notnull(valeur) else genre_fix_null
-                    texte_original_choisi = texte_original_choisi.replace("[genre]", str(valeur))
+                    valeur = convert_gender(valeur) if pd.notnull(valeur) else genre_fix_null
+                    caption = caption.replace("[genre]", str(valeur))
+                
+                # Sélection de l'age de l'image mouvante en priorité
                 elif colonne == 'age_mov':
                     if pd.notnull(valeur):
                         valeur = "juvenile" if valeur == "JUV" else f" of {''.join(char if char.isdigit() or char == ',' else '' for char in valeur).split(',')[0]} years old" if isinstance(valeur, str) else f" of {int(valeur)} years old"
-                        texte_original_choisi = texte_original_choisi.replace("[age]", str(valeur))
+                        caption = caption.replace("[age]", str(valeur))
                     else:
                         age_mov_null = True
                 elif colonne == 'age_fix' and age_mov_null:
                     if pd.notnull(valeur):
                         valeur = "juvenile" if valeur == "JUV" else f" of {''.join(char if char.isdigit() or char == ',' else '' for char in valeur).split(',')[0]} years old" if isinstance(valeur, str) else f" of {int(valeur)} years old"
-                        texte_original_choisi = texte_original_choisi.replace("[age]", str(valeur))
+                        caption = caption.replace("[age]", str(valeur))
                     else:
-                        texte_original_choisi = texte_original_choisi.replace("[age]", '')
+                        caption = caption.replace("[age]", '')
+                # Autres colonnes
                 else: 
-                    texte_original_choisi = texte_original_choisi.replace(f"[{colonne}]", str(valeur))
-
-            for colonne, valeur in valeurs_ligne_label.items():
+                    caption = caption.replace(f"[{colonne}]", str(valeur))
+                    
+            # Ajout du type de coupe et des label
+            for colonne, valeur in labelLine.items():
                 if colonne == 'genre_mov':
-                    valeur = convertir_coupe(valeur)
-                texte_original_choisi = texte_original_choisi.replace(f"[{colonne}]", str(valeur))
+                    valeur = convert_slice(valeur)
+                caption = caption.replace(f"[{colonne}]", str(valeur))
 
-            label = valeurs_ligne_label['labels']
-            mots_cles = extraire_mots_cles(label)
+            label = labelLine['labels']
+            words = extract_labels(label)
 
-            version_mots_cles = generer_version_mots_cles(mots_cles)
-            texte_modifie = f"{texte_original_choisi} {version_mots_cles}"
+            version_mots_cles = gen_label_part(words)
+            texte_modifie = f"{caption} {version_mots_cles}"
 
-            descriptions_modifiees.append(texte_modifie)
-            
-        df_descriptions = pd.DataFrame({'description': descriptions_modifiees})
+            modifCaption.append(texte_modifie)
+        
+        # Enregistrer les 5 descriptions générées pour la coupe dans un fichier csv
+        df_caption = pd.DataFrame({'description': modifCaption})
 
-        nom_base = os.path.splitext(os.path.basename(chemin_csv_label))[0].rsplit('_', 1)[0]
-        num_coupe = valeurs_ligne_label['num coupe']
+        nom_base = os.path.splitext(os.path.basename(filePath_coupes))[0].rsplit('_', 1)[0]
+        num_coupe = labelLine['num coupe']
 
         csv_sortie = f"{nom_base}_{coupe}_{num_coupe}.csv"
-        chemin_csv_sortie = os.path.join(chemin_output, csv_sortie)
-        df_descriptions.to_csv(chemin_csv_sortie, index=False)
+        chemin_csv_sortie = os.path.join(outputPath_final, csv_sortie)
+        df_caption.to_csv(chemin_csv_sortie, index=False)
 
     return None
-
-def afficher_aide():
-    print("Usage: python script.py <InputFolder>")
 
 # Chemin vers dossiers contenant les fichiers csv des coupes
 if len(sys.argv) != 2:
@@ -136,36 +138,31 @@ if len(sys.argv) != 2:
 
 inputFolder = sys.argv[1]
 
+outputPath = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Captions")
+if not os.path.exists(outputPath):
+    os.makedirs(outputPath)
+
 # Liste pour les fichiers finissant par "header.csv"
 header_files = [f for f in os.listdir(inputFolder) if f.endswith("header.csv")]
 
 # Liste pour les fichiers finissant par "coupes.csv"
 coupes_files = [f for f in os.listdir(inputFolder) if f.endswith("coupes.csv")]
 
-chemin_textes = "./Caption_Generation/en/generic_leg.txt"
+textPath = "./Caption_Generation/en/generic_leg.txt"
 
 for header_file in header_files:
-    chemin_du_csv_header = os.path.join(inputFolder, header_file)
+    filePath_header = os.path.join(inputFolder, header_file)
     # Recherche le fichier coupes.csv correspondant
-    nom_fichier = header_file.replace('_header.csv', '')
+    fileName = header_file.replace('_header.csv', '')
     for coupes_file in coupes_files:
-        if coupes_file.startswith(nom_fichier):
-            chemin_du_csv_label = os.path.join(inputFolder, coupes_file)
+        if coupes_file.startswith(fileName):
+            filePath_coupes = os.path.join(inputFolder, coupes_file)
             break
 
     # Chemin vers dossier final
-    if "majority" in nom_fichier:
-        pattern = re.search(r'([^_]+)_([^_]+)_', nom_fichier)
-        chemin_output = f"../data/Captions/{pattern.group(1)}/{nom_fichier}"
-    else:
-        pattern = re.search(r'([^_]+)_([^_]+)_([^_]+)_([^_]+)', nom_fichier)
-        print (pattern)
-        if pattern.group(1) == 'IBSR':
-            chemin_output = f"../data/Captions/{pattern.group(3)}/{nom_fichier}"
-        else:
-            chemin_output = f"../data/Captions/{pattern.group(1)}/{nom_fichier}"
-            
-    if not os.path.exists(chemin_output):
-        os.makedirs(chemin_output)
-    print(f"Processing {chemin_du_csv_header} and {chemin_du_csv_label}")
-    extraire_descriptions_pour_toutes_les_lignes(chemin_du_csv_header, chemin_du_csv_label, chemin_textes, chemin_output)
+    outputPath_final = os.path.join(outputPath,fileName)     
+    if not os.path.exists(outputPath_final):
+        os.makedirs(outputPath_final)
+                    
+    print(f"Processing {filePath_header} and {filePath_coupes}")
+    extract_captions(filePath_header, filePath_coupes, outputPath_final)
