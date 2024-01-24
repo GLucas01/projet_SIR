@@ -1,17 +1,14 @@
 ## Anatomie.csv
-ID,Structure Anatomique
+ID,Labels,RGB
 
 ## Atlas_info.csv
-ID,SEXE,AGE
+ID,GENDER,AGE
 
 ## IXI_info.csv
-IXI_ID,"SEX_ID(1=m,2=f)",HEIGHT,WEIGHT,AGE
+ID,AGE,GENDER
 
 ## OASIS_info.csv
 ID,AGE,GENDER,HAND
 
 ## Kirby_info.csv
 ID,AGE,GENDER,HAND
-
-## Image_info.csv
-Modalité,Orientation
