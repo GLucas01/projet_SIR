@@ -36,7 +36,7 @@ def extract_info(Im, ID):
     elif Im == 'KKI':
         infoFilePath = os.path.join(infoPath, 'Kirby_info.csv')
     elif Im == 'IBSR':
-        infoFilePath = os.path.join(infoPath, 'Atlas_info.csv')
+        infoFilePath = os.path.join(infoPath, 'IBSR_info.csv')
     else:
         print(f"Infos about {Im} not found")
 
@@ -161,5 +161,5 @@ for inputFile in inputFiles:
         writer.writerow(data)
 
     # Appeler la fonction
-    modifier_id_par_labels(inputPath, os.path.join(infoPath, "Anatomie.csv"), outputPath_coupes, data[5], data[6], data[7])
+    modifier_id_par_labels(inputPath, os.path.join(infoPath, "Anatomie_IBSR.csv"), outputPath_coupes, data[5], data[6], data[7])
 print(f"Les données ont été écrites dans les fichiers CSV dans le dossier : Keywords")
