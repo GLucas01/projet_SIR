@@ -37,8 +37,11 @@ def gen_label_part(mots_cles):
 
 
 def convert_gender(genre):
-    mots_genre = {'M': 'a man', 'F': 'a woman'}
-    return mots_genre.get(genre.upper(), genre)
+    mots_genre = {'M': 'a man', 'F': 'a woman', '': 'a person'}
+    if isinstance(genre,str):
+        return mots_genre.get(genre.upper(), genre)
+    else :
+        return "a person"
 
 def convert_slice(coupe):
     mots_coupe = {'axial': 'an axial', 'coronal': 'a coronal', 'sagittal': 'a sagittal'}
