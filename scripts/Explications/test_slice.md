@@ -1,7 +1,7 @@
 # Nibabel
 
 ## Niveau de gris
-*choisis un fichier au hasard dans le dossier et exporte toutes les coupes de ce volume*\n
+*choisis un fichier au hasard dans le dossier et exporte toutes les coupes de ce volume*
 Les coupes sont faites celon les même procéder pour les image en niveau de gris et les segmentations pour obtenir les csv
 ### slice_NG.py
 
