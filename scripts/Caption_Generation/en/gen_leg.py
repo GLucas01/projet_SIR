@@ -79,31 +79,30 @@ def extract_captions(filePath_header, filePath_coupes, outputPath_final):
         sliceText = text.get(coupe, text)
 
         for _ in range(5):
-            age_mov_null = False
-            genre_fix_null = ""
+            age_mov = ""
+            genre_mov_null = True
             caption = random.choice(sliceText)
 
             for colonne, valeur in headerLine.items():
-                # Sélection du genre de l'image fixe en priorité
+                # Sélection du genre de l'image mouvante en priorité
                 if colonne == 'genre_mov':
-                    genre_fix_null = convert_gender(valeur)
-                elif colonne == 'genre_fix':
-                    valeur = convert_gender(valeur) if pd.notnull(valeur) else genre_fix_null
+                    valeur = convert_gender(valeur)
+                    genre_mov_null = False
+                    caption = caption.replace("[genre]", str(valeur))
+                elif colonne == 'genre_fix'and genre_mov_null:
+                    valeur = convert_gender(valeur)
                     caption = caption.replace("[genre]", str(valeur))
                 
-                # Sélection de l'age de l'image mouvante en priorité
+                # Sélection de l'age de l'image fix en priorité
                 elif colonne == 'age_mov':
                     if pd.notnull(valeur):
-                        valeur = "juvenile" if valeur == "JUV" else f" of {''.join(char if char.isdigit() or char == ',' else '' for char in valeur).split(',')[0]} years old" if isinstance(valeur, str) else f" of {int(valeur)} years old"
-                        caption = caption.replace("[age]", str(valeur))
-                    else:
-                        age_mov_null = True
-                elif colonne == 'age_fix' and age_mov_null:
+                        age_mov = "juvenile" if valeur == "JUV" else f" of {''.join(char if char.isdigit() or char == ',' else '' for char in valeur).split(',')[0]} years old" if isinstance(valeur, str) else f" of {int(valeur)} years old"
+                elif colonne == 'age_fix':
                     if pd.notnull(valeur):
                         valeur = "juvenile" if valeur == "JUV" else f" of {''.join(char if char.isdigit() or char == ',' else '' for char in valeur).split(',')[0]} years old" if isinstance(valeur, str) else f" of {int(valeur)} years old"
                         caption = caption.replace("[age]", str(valeur))
                     else:
-                        caption = caption.replace("[age]", '')
+                        caption = caption.replace("[age]", str(age_mov))
                 # Autres colonnes
                 else: 
                     caption = caption.replace(f"[{colonne}]", str(valeur))

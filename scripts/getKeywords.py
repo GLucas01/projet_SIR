@@ -81,8 +81,10 @@ def extract_data_in_name(inputFile):
     # Extraire les données nécessaires
     modalite = getModalite(part[0])
     genre_mov, age_mov = extract_info(part[0],part[1])
-    if len(part)>2:
+    if len(part)>3:
         genre_fix, age_fix = extract_info(part[2],part[3])
+    else :
+        genre_fix, age_fix = "",""
         
     with open(inputPath, 'r') as f:
         reader = csv.DictReader(f)
@@ -145,7 +147,7 @@ for inputFile in inputFiles:
     outputPath_coupes = os.path.join(outputPath, outputFile_coupes)
 
     # Noms des colonnes
-    colonnes = ["modalite", "genre_mov", "age_mov","genre_fix","genre_fix", "Sx", "Sy", "Sz"]
+    colonnes = ["modalite", "genre_mov", "age_mov","genre_fix","age_fix", "Sx", "Sy", "Sz"]
 
     # Ajouter les données à la liste
     data = extract_data_in_name(inputFile)
