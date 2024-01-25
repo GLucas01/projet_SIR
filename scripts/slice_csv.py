@@ -131,6 +131,12 @@ def getSlicesSeg (inputImage):
     axial_len = arrayImage.shape[2]
 
     sliceArray = []
+    
+    for i in range(sagittal_len):
+        image_slice = arrayImage[i, :, :]
+        unique_values, counts = np.unique(image_slice, return_counts=True)
+        resultats_comptage = list(zip(unique_values.astype(int), counts))
+        sliceArray.append(["sagittal", i, image_slice.shape, inputImage.header.get_zooms(), resultats_comptage])
 
     for i in range(coronal_len):
         image_slice = arrayImage[:, i, :]
@@ -144,11 +150,6 @@ def getSlicesSeg (inputImage):
         resultats_comptage = list(zip(unique_values.astype(int), counts))
         sliceArray.append(["axial", i, image_slice.shape, inputImage.header.get_zooms(), resultats_comptage])
 
-    for i in range(sagittal_len):
-        image_slice = arrayImage[i, :, :]
-        unique_values, counts = np.unique(image_slice, return_counts=True)
-        resultats_comptage = list(zip(unique_values.astype(int), counts))
-        sliceArray.append(["sagittal", i, image_slice.shape, inputImage.header.get_zooms(), resultats_comptage])
 
     return sliceArray
 
