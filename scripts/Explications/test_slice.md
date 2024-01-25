@@ -4,8 +4,24 @@
 *choisis un fichier au hasard dans le dossier et exporte toutes les coupes de ce volume*  
 Les coupes sont faites celon les même procéder pour les image en niveau de gris et les segmentations pour obtenir les csv
 ### slice_NG.py
+IXI_476_IXI_293_axial_64.nii.gz  
+![Alt text](image-3.png)  
+
+IXI_476_IXI_293_coronal_101.nii.gz  
+![Alt text](image-4.png)  
+
+IXI_476_IXI_293_sagittal_150.nii.gz
+![Alt text](image-5.png)   
 
 ### slice_NG_without_fdata.py
+IXI_424_IXI_305_axial_80.nii.gz  
+![Alt text](image-6.png)  
+
+IXI_424_IXI_305_coronal_94.nii.gz  
+![Alt text](image-7.png)  
+
+IXI_424_IXI_305_sagittal_104.nii.gz  
+![Alt text](image-8.png)  
 
 ### Conclusion
 
@@ -39,6 +55,15 @@ Se sont les même éléments mais comment savoir si c'est bien la coronal dans l
 Apparition de cette erreur:  
 WARNING: In /tmp/SimpleITK-build/ITK/Modules/IO/NIFTI/src/itkNiftiImageIO.cxx, line 2191
 NiftiImageIO (0x55b245dbfc10): Non-orthogonal direction matrix coerced to orthogonal
+
+IXI_476_IXI_293_axial_93.nii.gz  
+![Alt text](image-9.png)  
+
+IXI_476_IXI_293_coronal_103.nii.gz  
+![Alt text](image-10.png)  
+
+IXI_476_IXI_293_sagittal_103.nii.gz  
+![Alt text](image-11.png)  
 
 ## CSV
 
