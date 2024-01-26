@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/bin/bas
+
+# Ce script permet de recaler des moving images sur des fixed images, le dossier de sortie est <output_folder>
+# Transformation directe, il est préférable d'utiliser des images qui sont skull (cf skull_stripping.sh) que ce soit moving ou fixed 
 
 if [ "$#" -ne 3 ]; then
     echo "Usage: $0 <fixed_folder> <moving_folder> <output_folder>"
@@ -25,7 +28,7 @@ if [ -d "$fixed_folder" ]; then
 
                     transform_file="$output_folder/${moving_base}_reg_${fixed_base}"
 
-                    /home/julie/Software/antsRegistration \
+                    /home/thomas/Desktop/4TC/SIR/Registration_Ants/antsRegistration \
                        --dimensionality 3 \
                        --float 0 \
                        --output ["$transform_file", "$output_folder/${moving_base}_reg_${fixed_base}.nii.gz"] \
