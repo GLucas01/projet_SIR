@@ -1,56 +1,61 @@
 #!/bin/bash
 
-# Ce script permet d'obtenir le recalage inverse en niveau de gris de OASIS (mobile) sur l'IBSR (fixe)
+# Ce script permet d'effectuer le recalage inverse en niveau de gris 
+# en utiliser les fichiers de transformation .mat du dossier /brain_reg
+# fixed_NG_folder : dossier contenant les images fixes en niveau de gris du recalage direct
+# moving_NG_folder : dossier contenant les images mobiles en niveau de gris du recalage direct
+# moving_fixed_reg_brain_folder : dossier contenant les fichiers de transformation .mat du recalage direct
+# moving_fixed_reg_inv_folder : dossier de sortie
 
 if [ "$#" -ne 4 ]; then
-    echo "Usage: $0 <fixed_NG_folder> <moving_seg_folder> <moving_fixed_reg_inv_folder> <moving_fixed_reg_brain_folder>"
+    echo "Usage: $0 <fixed_NG_folder> <moving_NG_folder> <moving_fixed_reg_brain_folder> <moving_fixed_reg_inv_folder>"
     exit 1
 fi
 
 fixed_NG_folder="$1"
-moving_seg_folder="$2"
-moving_fixed_reg_inv_folder="$3"
-moving_fixed_reg_brain_folder="$4"
+moving_NG_folder="$2"
+moving_fixed_reg_brain_folder="$3"
+moving_fixed_reg_inv_folder="$4"
 
-mkdir -p "$moving_fixed_reg_inv_folder"
+apply_transform() {
+    local transform_file="$1"
+    local moving_image
+    local fixed_image
+    local output_file_name
+    local output_file
 
-for fixed_file in "$fixed_NG_folder"/*.nii.gz; do
-    fixed_NG_name=$(basename "$fixed_file" | sed 's/\.nii\.gz$//')
+    transform_base=$(basename "$transform_file" .mat)
 
-    for moving_file in "$moving_seg_folder"/*_majority.nii.gz; do
-        moving_seg_name=$(basename "$moving_file" | sed -E 's/_majority\.nii\.gz$//')
+    if echo "$transform_base" | grep -q '_brain_reg_'; then
+        suffix=$(echo "$transform_base" | sed 's/.*_brain_reg_\(.*\)_brain0GenericAffine/\1/')
+        prefix=$(echo "$transform_base" | sed 's/_brain_reg_.*$//')
+    elif echo "$transform_base" | grep -q '_reg_' && ! echo "$transform_base" | grep -q '_brain_reg_'; then
+        suffix=$(echo "$transform_base" | sed 's/.*_reg_\(.*\)_brain0GenericAffine/\1/')
+        prefix=$(echo "$transform_base" | sed 's/_reg_.*$//')
+    else
+        echo "Unrecognized naming convention in $transform_file"
+        return
+    fi
 
-        if [[ "$moving_seg_name" == OAS1* ]]; then
-            id_moving=$(echo "$moving_seg_name" | cut -d '_' -f 2)
-            moving_seg_name="OAS1_${id_moving}_MR1_mpr-1_anon_rot_brain"
-        elif [[ "$moving_seg_name" == KKI2009* ]]; then
-            id_moving=$(echo "$moving_seg_name" | cut -d '-' -f 2)
-            moving_seg_name="KKI2009-${id_moving}-FLAIR_brain"
-        elif [[ "$moving_seg_name" == IBSR* ]]; then
-            id_moving=$(echo "$moving_seg_name" | cut -d '_' -f 2)
-            moving_seg_name="IBSR_${id_moving}_ana"
-        elif [[ "$moving_seg_name" == IXI* ]]; then
-            id_moving=$(echo "$moving_seg_name" | cut -d '-' -f 2)
-            moving_seg_name="IXI${id_moving}-T2_brain"
-        fi
+    moving_image="$moving_NG_folder/${prefix}.nii.gz"
+    fixed_image="$fixed_NG_folder/${suffix}.nii.gz"
+    output_file_name="${suffix}_reg_${prefix}_inv.nii.gz"
+    output_file="$moving_fixed_reg_inv_folder/$output_file_name"
 
-        output_file="$moving_fixed_reg_inv_folder/${fixed_NG_name}_reg_${moving_seg_name}_inv.nii.gz"
+    /home/julie/Software/antsApplyTransforms -d 3 \
+        -r "$moving_image" \
+        -i "$fixed_image" \
+        -o "$output_file" \
+        -t "[$transform_file, 1]" \
+        --interpolation Linear
 
-	transform_file="$moving_fixed_reg_brain_folder/${moving_seg_name}_reg_${fixed_NG_name}0GenericAffine.mat"
+    echo "Fichier créé : $output_file"
+}
 
-	if [ ! -f "$transform_file" ]; then
-	    transform_file="$moving_fixed_reg_brain_folder/${moving_seg_name}_reg_${fixed_NG_name}_brain0GenericAffine.mat"
-	fi
-
-
-        /home/thomas/Desktop/4TC/SIR/Registration_Ants/antsApplyTransforms -d 3 \
-            -r "$moving_file" \
-            -i "$fixed_file" \
-            -o "$output_file" \
-            -t "[$transform_file, 1]" \
-            --interpolation Linear
-            
-        echo "Fichier créé : $output_file"
-    done
+for transform_file in "$moving_fixed_reg_brain_folder"/*reg*.mat; do
+    if [ -f "$transform_file" ]; then
+        apply_transform "$transform_file"
+    fi
 done
 
+echo "All transformations applied successfully."
