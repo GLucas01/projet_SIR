@@ -169,6 +169,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 
 #### Dossiers dont le nom contient 1 dataset
 - exemple de nomenclature : 
+
 	├── IXI  
 	│   ├── brain  
 	│   ├── NG  
@@ -184,6 +185,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 
 ##### Dossiers dont le nom contient 2 datasets, cas général
 - exemple de nomencalture
+
 	├── IXI_Kirby  
 	│   ├── reg  
 	│   ├── reg_brain  
@@ -202,6 +204,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 ##### Dossiers dont le nom contient 2 datasets, avec IBSR comme 1er nom
 - Il faut mieux utiliser la segmentation de l'IBSR plutôt que la segmentation du 1er dataset
 - exemple de nomenclature
+
 	├── IBSR_OASIS  
 	│   ├── reg  
 	│   ├── reg_brain  
@@ -216,6 +219,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 
 ##### Dossiers dont le nom contient 2 datasets, avec IBSR comme 2ème nom
 - exemple de nomencalture
+
     ├── IXI_IBSR  
     │   ├── reg  
     │   ├── reg_brain  
@@ -310,6 +314,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 - *run in script* `python3 slice_to_caption.py <InputFolder>`
 - le fonctionnement des 3 scripts est expliqué dans les 3 parties qui suivent
 - exemple d'une nomenclature
+
 ├── Kirby_IXI  
 │   ├── reg  
 │   ├── reg_brain  
