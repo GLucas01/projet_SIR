@@ -6,162 +6,162 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 
 ## Structure de la base de données (sur clé USBs)
 ### Arborescence utilisée
-├── data
-│   ├── FL
-│   │   ├── Kirby
-│   │   │   ├── brain
-│   │   │   ├── NG
-│   │   │   └── seg
-│   │   ├── Kirby_IBSR
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── seg_inv
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   ├── Kirby_IXI
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   ├── Kirby_Kirby
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   └── Kirby_OASIS
-│   │       ├── reg
-│   │       ├── reg_brain
-│   │       ├── reg_inv
-│   │       ├── Slice_csv
-│   │       ├── Keywords
-│   │       └── Captions
-│   ├── T1
-│   │   ├── IBSR
-│   │   │   ├── brain
-│   │   │   ├── NG
-│   │   │   └── seg
-│   │   ├── IBSR_IBSR
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── seg
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   ├── IBSR_IXI
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── seg
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   ├── IBSR_Kirby
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── seg
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   ├── IBSR_OASIS
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── seg
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   ├── OASIS
-│   │   │   ├── brain
-│   │   │   ├── NG
-│   │   │   └── seg
-│   │   ├── OASIS_IBSR
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── seg_inv
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   ├── OASIS_IXI
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   ├── OASIS_Kirby
-│   │   │   ├── reg
-│   │   │   ├── reg_brain
-│   │   │   ├── reg_inv
-│   │   │   ├── Slice_csv
-│   │   │   ├── Keywords
-│   │   │   └── Captions
-│   │   └── OASIS_OASIS
-│   │       ├── reg
-│   │       ├── reg_brain
-│   │       ├── reg_inv
-│   │       ├── Slice_csv
-│   │       ├── Keywords
-│   │       └── Captions
-│   └── T2
-│       ├── IXI
-│       │   ├── brain
-│       │   ├── NG
-│       │   └── seg
-│       ├── IXI_IBSR
-│       │   ├── reg
-│       │   ├── reg_brain
-│       │   ├── reg_inv
-│       │   ├── seg_inv
-│       │   ├── Slice_csv
-│       │   ├── Keywords
-│       │   └── Captions
-│       ├── IXI_IXI
-│       │   ├── reg
-│       │   ├── reg_brain
-│       │   ├── reg_inv
-│       │   ├── Slice_csv
-│       │   ├── Keywords
-│       │   └── Captions
-│       ├── IXI_Kirby
-│       │   ├── reg
-│       │   ├── reg_brain
-│       │   ├── reg_inv
-│       │   ├── Slice_csv
-│       │   ├── Keywords
-│       │   └── Captions
-│       └── IXI_OASIS
-│           ├── reg
-│           ├── reg_brain
-│           ├── reg_inv
-│           ├── Slice_csv
-│           ├── Keywords
-│           └── Captions
-└── scripts
-|   ├── biasCorrection.py
-├── Caption_Generation
-│   ├── en
-│   │   ├── generic_leg.txt
-│   │   └── gen_leg.py
-│   └── fr
-│       ├── gen_leg_fr.py
-│       └── Phrases_generique.txt
-├── convert_brain_reg_to_reg.sh
-├── getKeywords.py
-├── MajorityVoting.py
-├── reg_inv_NG.sh
-├── reg.sh
-├── seg_inv.sh
-├── skull_stripping.sh
-└── slice_csv.py
+├── data  
+│   ├── FL  
+│   │   ├── Kirby  
+│   │   │   ├── brain  
+│   │   │   ├── NG  
+│   │   │   └── seg  
+│   │   ├── Kirby_IBSR  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── seg_inv  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   ├── Kirby_IXI  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   ├── Kirby_Kirby  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   └── Kirby_OASIS  
+│   │       ├── reg  
+│   │       ├── reg_brain  
+│   │       ├── reg_inv  
+│   │       ├── Slice_csv  
+│   │       ├── Keywords  
+│   │       └── Captions  
+│   ├── T1  
+│   │   ├── IBSR  
+│   │   │   ├── brain  
+│   │   │   ├── NG  
+│   │   │   └── seg  
+│   │   ├── IBSR_IBSR  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── seg  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   ├── IBSR_IXI  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── seg  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   ├── IBSR_Kirby  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── seg  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   ├── IBSR_OASIS  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── seg  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   ├── OASIS  
+│   │   │   ├── brain  
+│   │   │   ├── NG  
+│   │   │   └── seg  
+│   │   ├── OASIS_IBSR  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── seg_inv  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   ├── OASIS_IXI  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   ├── OASIS_Kirby  
+│   │   │   ├── reg  
+│   │   │   ├── reg_brain  
+│   │   │   ├── reg_inv  
+│   │   │   ├── Slice_csv  
+│   │   │   ├── Keywords  
+│   │   │   └── Captions  
+│   │   └── OASIS_OASIS  
+│   │       ├── reg  
+│   │       ├── reg_brain  
+│   │       ├── reg_inv  
+│   │       ├── Slice_csv  
+│   │       ├── Keywords  
+│   │       └── Captions  
+│   └── T2  
+│       ├── IXI  
+│       │   ├── brain  
+│       │   ├── NG  
+│       │   └── seg  
+│       ├── IXI_IBSR  
+│       │   ├── reg  
+│       │   ├── reg_brain  
+│       │   ├── reg_inv  
+│       │   ├── seg_inv  
+│       │   ├── Slice_csv  
+│       │   ├── Keywords  
+│       │   └── Captions  
+│       ├── IXI_IXI  
+│       │   ├── reg  
+│       │   ├── reg_brain  
+│       │   ├── reg_inv  
+│       │   ├── Slice_csv  
+│       │   ├── Keywords  
+│       │   └── Captions  
+│       ├── IXI_Kirby  
+│       │   ├── reg  
+│       │   ├── reg_brain  
+│       │   ├── reg_inv  
+│       │   ├── Slice_csv  
+│       │   ├── Keywords  
+│       │   └── Captions  
+│       └── IXI_OASIS  
+│           ├── reg  
+│           ├── reg_brain  
+│           ├── reg_inv  
+│           ├── Slice_csv  
+│           ├── Keywords  
+│           └── Captions  
+└── scripts  
+|   ├── biasCorrection.py  
+├── Caption_Generation  
+│   ├── en  
+│   │   ├── generic_leg.txt  
+│   │   └── gen_leg.py  
+│   └── fr  
+│       ├── gen_leg_fr.py  
+│       └── Phrases_generique.txt  
+├── convert_brain_reg_to_reg.sh  
+├── getKeywords.py  
+├── MajorityVoting.py  
+├── reg_inv_NG.sh  
+├── reg.sh  
+├── seg_inv.sh  
+├── skull_stripping.sh  
+└── slice_csv.py  
 
 ### Explication des noms de dossiers
 - On appelera dataset IBSR,OASIS,IXI et Kirby
@@ -169,50 +169,63 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 
 #### Dossiers dont le nom contient 1 dataset
 - exemple de nomenclature : 
-    ├── IXI
-    │   ├── brain
-    │   ├── NG
-    │   ├── norm
-    │   └── seg
+	├── IXI  
+	│   ├── brain  
+	│   ├── NG  
+	│   └── seg  
+
 - `NG` : contient les images originales IBSR/IXI/OASIS/Kirby en niveau de gris(NG)
 - `brain` : contient les images originales IBSR/IXI/OASIS/Kirby en niveau de gris(NG) dont les zones extérieures du cerveau ont été enlevé (skulled)
 - `seg` : contient les segmentations des images originales IBSR/IXI/OASIS/Kirby. IBSR est l'atlas que nous avons téléchargé depuis internet donc les segmentations sont connues au départ. Pour les images IXI/OASIS/Kirby, les segmentations des images sont obtenues par majority voting à partir du dossier `seg_inv`
+- 
 
 #### Dossiers dont le nom contient 2 datasets
 - nom : `moving_fixed`. Par exemple pour `IXI_IBSR`, IXI sont les images mobiles (moving dataset) et IBSR les images fixes (fixed dataset)
 
 ##### Dossiers dont le nom contient 2 datasets, cas général
 - exemple de nomencalture
-    ├── IXI_Kirby
-    │   ├── reg
-    │   ├── reg_brain
-    │   ├── reg_inv
-    │   └── reg_norm
+	├── IXI_Kirby  
+	│   ├── reg  
+	│   ├── reg_brain  
+	│   ├── reg_inv  
+	│   ├── Slice_csv  
+	│   ├── Keywords  
+	│   └── Captions  
+
 - `reg` : images du moving dataset (ici IXI) recalées sur le fixed dataset (ici Kirby).
 - `reg_brain` : images du moving dataset (ici IXI) recalées sur le fixed dataset (ici Kirby). brain indique que les zones extérieures du cerveau ont été enelvé
 - `reg_inv` : images obtenues par recalage inverse. Paramètres : fichier .mat (obtenu par recalage direct) inverse. Fixes : images du moving_dataset (ici IXI). Moving : images du fixed_dataset en niveau de gris (ici Kirby)
+- `Slice_csv` : le dossier contient les fichiers csv extraits de chaque volume
+- `Keywords` : le dossier contient les fichiers csv header et coupes associés à chaque volume
+- `Captions` : le dossier contient les légendes associées à chaque coupe
 
 ##### Dossiers dont le nom contient 2 datasets, avec IBSR comme 1er nom
 - Il faut mieux utiliser la segmentation de l'IBSR plutôt que la segmentation du 1er dataset
 - exemple de nomenclature
-├── IBSR_OASIS
-│   ├── reg
-│   ├── reg_brain
-│   ├── reg_inv
-│   ├── reg_norm
-│   └── seg
-- `reg`, `reg_brain`, `reg_inv` : cf paragraphe cas général
+	├── IBSR_OASIS  
+	│   ├── reg  
+	│   ├── reg_brain  
+	│   ├── reg_inv  
+	│   ├── seg  
+	│   ├── Slice_csv  
+	│   ├── Keywords  
+	│   └── Captions  
+
+- `reg`, `reg_brain`, `reg_inv`, `Slice_csv`,`Keywords`, `Captions` : cf paragraphe cas général
 - `seg` : images de IBSR () segmentées qui ont été obtenues par recalage direct. Paramètres : fichier .mat (obtenu par recalage direct --> dans le dossier reg_brain). Fixes : images du fixed_dataset (ici IXI). Moving : images du moving_dataset segmentées (ici IBSR)
 
 ##### Dossiers dont le nom contient 2 datasets, avec IBSR comme 2ème nom
 - exemple de nomencalture
-    ├── IXI_IBSR
-    │   ├── reg
-    │   ├── reg_brain
-    │   ├── reg_inv
-    │   ├── reg_norm
-    │   └── seg_inv
-- `reg`, `reg_brain`, `reg_inv` : cf paragraphe cas général
+    ├── IXI_IBSR  
+    │   ├── reg  
+    │   ├── reg_brain  
+    │   ├── reg_inv  
+    │   ├── seg_inv  
+	│   ├── Slice_csv  
+	│   ├── Keywords  
+	│   └── Captions  
+
+- `reg`, `reg_brain`, `reg_inv`, `Slice_csv`,`Keywords`, `Captions` : cf paragraphe cas général
 - `seg_inv` : images du moving dataset segmentées qui ont été obtenues par recalage inverse. Paramètres : fichier .mat (obtenu par recalage direct) inverse. Fixes : images du moving_dataset (ici IXI). Moving : images du fixed_dataset segmentées (ici IBSR)
 
 ## Scripts de traitement sur les images (rotation, recalage, normalisation, nouveaux atlas)
@@ -297,13 +310,13 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 - *run in script* `python3 slice_to_caption.py <InputFolder>`
 - le fonctionnement des 3 scripts est expliqué dans les 3 parties qui suivent
 - exemple d'une nomenclature
-├── Kirby_IXI
-│   ├── reg
-│   ├── reg_brain
-│   ├── reg_inv
-│   ├── Slice_csv
-│   ├── Keywords
-│   └── Captions
+├── Kirby_IXI  
+│   ├── reg  
+│   ├── reg_brain  
+│   ├── reg_inv  
+│   ├── Slice_csv  
+│   ├── Keywords  
+│   └── Captions  
 	
 ### Extraction des informations des coupes pour chaque volume
 *run in script*
