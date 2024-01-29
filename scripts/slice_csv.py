@@ -5,19 +5,23 @@ import re
 import numpy as np
 import nibabel as nib
 
+# Vérification du nombre d'arguments de la ligne de commande
 if len(sys.argv) != 2:
     print("Usage: python3 mon_script.py <inputFolder>")
     sys.exit(1)
 
 inputFolder = sys.argv[1]
 
+# Récupération du chemin du dossier d'entrée et création d'un dossier de sortie pour les fichiers CSV
 inputFiles = [f for f in os.listdir(inputFolder) if f.endswith('.nii.gz')]
-
-chemin_output = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Slice_csv")
+if inputFolder.endswith("inv"):
+    chemin_output = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Slice_csv_inv")
+else:
+    chemin_output = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Slice_csv")
 if not os.path.exists(chemin_output):
     os.makedirs(chemin_output)
 
-
+# Fonction pour extraire des informations sur les images fixe et mobile à partir du nom du fichier
 def getInfo(inputFile):
     
     #Im_fix
@@ -74,6 +78,7 @@ def getInfo(inputFile):
               
     return Im_mov, ID_mov, Im_fix, ID_fix
 
+# Fonction pour récupérer le chemin du fichier image fixe en fonction de la base de donnee et de l'ID
 def fixPath (Im_fix, ID):
     if Im_fix == "IBSR":
         pathFile = "../data/T1/IBSR/seg"
@@ -109,7 +114,10 @@ def fixPath (Im_fix, ID):
     
     return fixedPath
 
-def findSegIBSR (inputFile, ID_mov):
+# Fonction pour trouver le chemin du fichier segmentation pour le cas spécifique de l'IBSR
+def findSegIBSR (inputFile, ID_mov, Im_fix, ID_fix):
+    fixedPath = ""
+    
     #Cas de la transformé inverse
     if "inv" in inputFile:
         pathFile = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"seg_inverse")
@@ -117,11 +125,26 @@ def findSegIBSR (inputFile, ID_mov):
         for file in files:
             if f"seg_IBSR_{ID_mov}" in file:
                 fixedPath = os.path.join(pathFile,file)
-    ##ATENTION
-    #Autres cas non pris en compte pour le moment
+    
+    #Cas IBSR sur IBSR, segmentation de l'IBSR fixe
+    elif Im_fix == "IBSR":
+        pathFile = "../data/T1/IBSR/seg"
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"IBSR_{ID_fix}" in file:
+                fixedPath = os.path.join(pathFile,file)
+    
+    # Cas du calcul direct de recalage de l'IBSR en image mobile          
+    else:
+        pathFile = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"seg")
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"seg_IBSR_{ID_mov}" in file:
+                fixedPath = os.path.join(pathFile,file)
     
     return fixedPath
 
+# Fonction pour obtenir des informations sur les coupes à partir de la segmentation de l'image fixe
 def getSlicesSeg (inputImage):
     
     arrayImage = inputImage.get_fdata()
@@ -138,6 +161,7 @@ def getSlicesSeg (inputImage):
         resultats_comptage = list(zip(unique_values.astype(int), counts))
         sliceArray.append(["sagittal", i, image_slice.shape, inputImage.header.get_zooms(), resultats_comptage])
 
+
     for i in range(coronal_len):
         image_slice = arrayImage[:, i, :]
         unique_values, counts = np.unique(image_slice, return_counts=True)
@@ -150,24 +174,27 @@ def getSlicesSeg (inputImage):
         resultats_comptage = list(zip(unique_values.astype(int), counts))
         sliceArray.append(["axial", i, image_slice.shape, inputImage.header.get_zooms(), resultats_comptage])
 
-
     return sliceArray
 
+# Boucle principale pour traiter chaque fichier dans le dossier d'entrée
 for inputFile in inputFiles:
     inputFilePath = os.path.join(inputFolder, inputFile)
-
+    
+    # Vérification du type de fichier (reg, majority, seg)
     if "reg" in inputFile :
 
         Im_mov, ID_mov, Im_fix, ID_fix = getInfo(inputFile)
-        #cas particulier IBSR est l'image mouvante 
+
+        # Cas particulier IBSR est l'image mouvante 
         if Im_mov == "IBSR":
-            fixedImagePath = findSegIBSR(inputFile, ID_mov)
+            fixedImagePath = findSegIBSR(inputFile, ID_mov, Im_fix, ID_fix)
         else :
             fixedImagePath = fixPath(Im_fix, ID_fix)
-        print(fixedImagePath)
+
         fixedImage = nib.load(fixedImagePath)
         sliceArray = getSlicesSeg(fixedImage)
-
+        
+        # Création du fichier CSV
         csv_file = f"{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}.csv"
         chemin_csv_sortie = os.path.join(chemin_output, csv_file)
 
@@ -180,13 +207,16 @@ for inputFile in inputFiles:
             csv_writer.writerows(sliceArray)
 
         print(f"Le fichier {inputFile} a été traité et le CSV a été enregistré dans {csv_file}.")
-
+        
+    # Cas particulier des segmentations obtenue via le majority voting
     elif "majority" in inputFile:
         
         Im_mov,ID_mov, Im_fix, ID_fix= getInfo(inputFile)
+        
         image = nib.load(inputFilePath)
         sliceArray = getSlicesSeg(image)
-
+        
+        # Création du fichier CSV
         csv_file = f"{Im_mov}_{ID_mov}_majority.csv"
         chemin_csv_sortie = os.path.join(chemin_output, csv_file)
 
@@ -204,9 +234,11 @@ for inputFile in inputFiles:
     elif "seg" in inputFile:
         
         Im_mov,ID_mov, Im_fix, ID_fix= getInfo(inputFile)
+        
         image = nib.load(inputFilePath)
         sliceArray = getSlicesSeg(image)
-
+        
+        # Création du fichier CSV
         csv_file = f"{Im_mov}_{ID_mov}_seg.csv"
         chemin_csv_sortie = os.path.join(chemin_output, csv_file)
 

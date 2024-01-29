@@ -2,10 +2,12 @@ import pandas as pd
 import random
 import re, sys, os, ast
 
+# Fonction pour extraire le contenu de la colonne "labels"
 def extract_labels(label):
     labels = ast.literal_eval(label)
     return labels
 
+# Fonction pour générer la deuxième moitié de la légende contenant les éléments présents et leur volume
 def gen_label_part(mots_cles):
     versions = [
         "We observe {mots_cles} there.",
@@ -35,7 +37,7 @@ def gen_label_part(mots_cles):
             text = text[:lastWord_index] + ' and ' + text[lastWord_index + 2:]
         return label_part.format(mots_cles=text)
 
-
+# Fonction pour convertir le contenu de la colonne genre en une formulation textuelle
 def convert_gender(genre):
     mots_genre = {'M': 'a man', 'F': 'a woman', '': 'a person'}
     if isinstance(genre,str):
@@ -43,10 +45,12 @@ def convert_gender(genre):
     else :
         return "a person"
 
+# Fonction pour convertir le contenu de la colonne coupe en une formulation textuelle
 def convert_slice(coupe):
     mots_coupe = {'axial': 'an axial', 'coronal': 'a coronal', 'sagittal': 'a sagittal'}
     return mots_coupe.get(coupe.upper(), coupe)
 
+# Fonction pour charger les textes spécifiques à chaque type de coupe
 def text_by_slice():
     text = {}
     slice = None
@@ -65,6 +69,7 @@ def text_by_slice():
 
     return text
 
+# Fonction pour extraire les informations des fichiers CSV et générer des légendes
 def extract_captions(filePath_header, filePath_coupes, outputPath_final):
     df_header = pd.read_csv(filePath_header)
     df_label = pd.read_csv(filePath_coupes)
@@ -133,14 +138,17 @@ def extract_captions(filePath_header, filePath_coupes, outputPath_final):
 
     return None
 
-# Chemin vers dossiers contenant les fichiers csv des coupes
+# Vérification du nombre d'arguments de la ligne de commande
 if len(sys.argv) != 2:
     print("Usage: python3 mon_script.py <inputFolder>")
     sys.exit(1)
 
+# Récupération du chemin du dossier d'entrée et création d'un dossier de sortie pour les descriptions
 inputFolder = sys.argv[1]
-
-outputPath = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Captions")
+if inputFolder.endswith("inv"):
+    outputPath = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Captions_inv")
+else:
+    outputPath = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Captions")
 if not os.path.exists(outputPath):
     os.makedirs(outputPath)
 
@@ -150,6 +158,7 @@ header_files = [f for f in os.listdir(inputFolder) if f.endswith("header.csv")]
 # Liste pour les fichiers finissant par "coupes.csv"
 coupes_files = [f for f in os.listdir(inputFolder) if f.endswith("coupes.csv")]
 
+# Chemin vers le fichier texte contenant des formulations génériques
 textPath = "./Caption_Generation/en/generic_leg.txt"
 
 for header_file in header_files:

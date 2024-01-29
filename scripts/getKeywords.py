@@ -7,19 +7,22 @@ import re
 # Chemin vers les fichiers info.csv
 infoPath = "../data/Keywords"
 
-# Chemin vers dossiers contenant les fichiers csv des coupes
+# Vérification du nombre d'arguments de la ligne de commande
 if len(sys.argv) != 2:
     print("Usage: python3 mon_script.py <inputFolder>")
     sys.exit(1)
 
+# Récupération du chemin du dossier d'entrée et création d'un dossier de sortie pour les fichiers CSV
 inputFolder = sys.argv[1]
-
 inputFiles = [f for f in os.listdir(inputFolder) if f.endswith('csv')]
-
-outputPath = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Keywords")
+if inputFolder.endswith("inv"):
+    outputPath = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Keywords_inv")
+else:
+    outputPath = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Keywords")
 if not os.path.exists(outputPath):
     os.makedirs(outputPath)
 
+# Fonction pour extraire les informations de genre et age du patient à partir des fichiers info.csv
 def extract_info(Im, ID):
     ID = int(ID)
     # Conserver les zéros en tête en convertissant l'ID en chaîne pour la BD OASIS
@@ -55,6 +58,7 @@ def extract_info(Im, ID):
 
         return genre,age
 
+# Fonction pour obtenir la modalité en fonction de la base de donnée de l'image
 def getModalite (Im):
     if Im == 'OAS':
         return "T1"
@@ -95,8 +99,7 @@ def extract_data_in_name(inputFile):
     # Retourner une liste avec les données extraites
     return [modalite, genre_mov, age_mov,genre_fix,age_fix, Sx, Sy, Sz]
 
-
-
+# Fonction pour remplacer les ID par les labels et calculer le volume des segments
 def modifier_id_par_labels(inputPath, anaPath, outputPath_coupes, Sx, Sy, Sz):
     # Noms des colonnes
     colonnes = ["coupe", "num coupe", "dimensions", "labels"]
@@ -130,7 +133,6 @@ def modifier_id_par_labels(inputPath, anaPath, outputPath_coupes, Sx, Sy, Sz):
             # Écrire la ligne modifiée dans le fichier de sortie
             writer.writerow([ligne["coupe"], ligne["num coupe"],dimension, str(labels_correspondants) ])
 
-
 # Traiter chaque fichier de coupes
 for inputFile in inputFiles:
 
@@ -152,7 +154,6 @@ for inputFile in inputFiles:
     # Ajouter les données à la liste
     data = extract_data_in_name(inputFile)
 
-    # Ouvrir le fichier CSV en mode append
     with open(outputPath_header, mode='w', newline='') as fichier_csv:
         writer = csv.writer(fichier_csv)
         # Écrire les noms des colonnes
@@ -160,6 +161,6 @@ for inputFile in inputFiles:
         # Écrire les données dans le fichier CSV de sortie
         writer.writerow(data)
 
-    # Appeler la fonction
+    # Appeler la fonction pour remplacer les ID par les labels
     modifier_id_par_labels(inputPath, os.path.join(infoPath, "Anatomie_IBSR.csv"), outputPath_coupes, data[5], data[6], data[7])
 print(f"Les données ont été écrites dans les fichiers CSV dans le dossier : Keywords")
