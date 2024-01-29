@@ -16,19 +16,31 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
-│   │   │   └── seg_inv
+│   │   │   ├── seg_inv
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   ├── Kirby_IXI
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   ├── Kirby_Kirby
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   └── Kirby_OASIS
 │   │       ├── reg
 │   │       ├── reg_brain
 │   │       ├── reg_inv
+│   │       ├── Slice_csv
+│   │       ├── Keywords
+│   │       └── Captions
 │   ├── T1
 │   │   ├── IBSR
 │   │   │   ├── brain
@@ -38,22 +50,34 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
-│   │   │   └── seg
+│   │   │   ├── seg
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   ├── IBSR_IXI
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
-│   │   │   └── seg
+│   │   │   ├── seg
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   ├── IBSR_Kirby
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
-│   │   │   └── seg
+│   │   │   ├── seg
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   ├── IBSR_OASIS
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
-│   │   │   └── seg
+│   │   │   ├── seg
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   ├── OASIS
 │   │   │   ├── brain
 │   │   │   ├── NG
@@ -62,19 +86,31 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
-│   │   │   └── seg_inv
+│   │   │   ├── seg_inv
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   ├── OASIS_IXI
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   ├── OASIS_Kirby
 │   │   │   ├── reg
 │   │   │   ├── reg_brain
 │   │   │   ├── reg_inv
+│   │   │   ├── Slice_csv
+│   │   │   ├── Keywords
+│   │   │   └── Captions
 │   │   └── OASIS_OASIS
 │   │       ├── reg
 │   │       ├── reg_brain
 │   │       ├── reg_inv
+│   │       ├── Slice_csv
+│   │       ├── Keywords
+│   │       └── Captions
 │   └── T2
 │       ├── IXI
 │       │   ├── brain
@@ -84,20 +120,48 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 │       │   ├── reg
 │       │   ├── reg_brain
 │       │   ├── reg_inv
-│       │   └── seg_inv
+│       │   ├── seg_inv
+│       │   ├── Slice_csv
+│       │   ├── Keywords
+│       │   └── Captions
 │       ├── IXI_IXI
 │       │   ├── reg
 │       │   ├── reg_brain
 │       │   ├── reg_inv
+│       │   ├── Slice_csv
+│       │   ├── Keywords
+│       │   └── Captions
 │       ├── IXI_Kirby
 │       │   ├── reg
 │       │   ├── reg_brain
 │       │   ├── reg_inv
+│       │   ├── Slice_csv
+│       │   ├── Keywords
+│       │   └── Captions
 │       └── IXI_OASIS
 │           ├── reg
 │           ├── reg_brain
 │           ├── reg_inv
+│           ├── Slice_csv
+│           ├── Keywords
+│           └── Captions
 └── scripts
+|   ├── biasCorrection.py
+├── Caption_Generation
+│   ├── en
+│   │   ├── generic_leg.txt
+│   │   └── gen_leg.py
+│   └── fr
+│       ├── gen_leg_fr.py
+│       └── Phrases_generique.txt
+├── convert_brain_reg_to_reg.sh
+├── getKeywords.py
+├── MajorityVoting.py
+├── reg_inv_NG.sh
+├── reg.sh
+├── seg_inv.sh
+├── skull_stripping.sh
+└── slice_csv.py
 
 ### Explication des noms de dossiers
 - On appelera dataset IBSR,OASIS,IXI et Kirby
@@ -191,7 +255,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 -  Tout d’abord, nous avons effecue un recalage d’une image d’une base de donnee, par exemple OASIS (image mobile) sur une image d’un atlas, par exemple IBSR (image fixe). Ce recalage a pour resultat :
 	- une image d’une base de donnee (par exemple OASIS) recalee sur une image d’un atlas (par exemple IBSR) en niveau de gris
 	- un fichier .mat stockant les parametre du recalage
-- L’application inverse du fichier .mat permet alors de recaler une image segmentée d’un atlas (par exemple IBSR) sur l’image de la base de donnee (par exemple OASIS) precedemment recalee.
+- L’application inverse du fichier .mat permet alors de recaler une image segmentée d’un atlas (par exemple IBSR) sur l’image de la base de donnee d'origine (par exemple OASIS).
 - Les images resultantes de ce recalage inverse sont donc des images de la base de donnee d’origine (par exemple OASIS) qui sont segmentees.
 - Ainsi, si l’on a n images OASIS et 18 IBSR, on obtient 18 images OASIS recalées par recalage ”direct”. Avec le recalage inverse, il est possible d’obtenir nx18 images segmentees OASIS
 - **adaptation code** : changer la ligne 29 pour insérer le chemin vers le fichier `antsApplyTransforms`
@@ -229,7 +293,73 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 - Freesurfer command : `mri_convert image.nii image.mgz`
 
 ## Génération d'un texte associée à chaque image obtenue
+- La commande suivante permet d'enchaîner les 3 scripts `slice_csv.py`, `getKeywords.py` et `Caption_Generation/en/gen_leg.py` :
+- *run in script* `python3 slice_to_caption.py <InputFolder>`
+- le fonctionnement des 3 scripts est expliqué dans les 3 parties qui suivent
+- exemple d'une nomenclature
+├── Kirby_IXI
+│   ├── reg
+│   ├── reg_brain
+│   ├── reg_inv
+│   ├── Slice_csv
+│   ├── Keywords
+│   └── Captions
+	
+### Extraction des informations des coupes pour chaque volume
+*run in script*
+`python3 slice_csv.py <InputFolder>`
 
-### fichier csv
-- décrit les coupes des volumes d'un patient
-- nom des colonnes : nom du volume, axe (sagital, coronnal,..), numéro de coupe, keywords, description
+En paramètre, le dossier contenant les volumes en format .nii.gz
+
+#### Attention : 
+- Les volumes en niveau de gris doivent contenir "reg" dans leurs noms et les labels seront extrait sur les segmentations correspondantes
+- Les volumes segmenté doivent contenir "seg" dans leurs noms
+- Les segmentations des images IXI, OASIS ou Kirby21 réalisé en majority voting après recalage de tout les IBSR doivent contenir "majority" dans leurs noms.
+
+
+> output: Slice_csv/{BD_mov}_{ID_mov}_{BD_fix}_{ID_fix}.csv
+Avec, BD_mov et BD_fix = OAS, IXI, KKI ou IBSR
+
+
+Le contenu du fichier: [coupe, num coupe, dimensions,voxel, labels]
+Exemple:
+...
+Coronal,33,"(256, 136)","(0.93750185, 0.93749905, 1.1999967)","[(0, 34750), (42, 66)]"
+Coronal,34,"(256, 136)","(0.93750185, 0.93749905, 1.1999967)","[(0, 34555), (3, 19), (41, 10), (42, 232)]"
+Coronal,35,"(256, 136)","(0.93750185, 0.93749905, 1.1999967)","[(0, 34273), (3, 129), (41, 23), (42, 391)]"
+...
+
+
+### Création des mot-clés pour chaque coupe
+*run in script*
+`python3 getKeywords.py <InputFolder>`
+
+En paramètre, le dossier contenant les fichiers csv extraits (Slice_csv)
+
+> output: Keywords/{BD_mov}_{ID_mov}_{BD_fix}_{ID_fix}_header.csv
+> output: Keywords/{BD_mov}_{ID_mov}_{BD_fix}_{ID_fix}_coupes.csv
+
+Le contenu du fichier header: [modalite, genre_mov, age_mov, genre_fix, genre_fix, Sx, Sy, Sz]
+Exemple:
+modalite,genre_mov,age_mov,genre_fix,genre_fix,Sx,Sy,Sz
+T2,M,37,F,"37,14",0.93750185,0.93749905,1.1999967
+
+Le contenu du fichier coupes: [coupe, num coupe, dimensions, labels]
+Exemple:
+...
+Coronal,31,"(256, 136)","[('Unknown', '36719.9343')]"
+Coronal,32,"(256, 136)","[('Unknown', '36719.9343')]"
+Coronal,33,"(256, 136)","[('Unknown', '36650.3250'), ('cortex of right cerebral hemisphere', '69.6093')]"
+...
+
+## Création des descriptions
+*run in script*
+`python3 ./Caption_Generation/en/gen_leg.py <InputFolder>`
+
+En paramètre, le dossier contenant les fichiers csv header et coupes (Keywords)
+
+> output: Captions/{BD_mov}_{ID_mov}_{BD_fix}_{ID_fix}/{BD_mov}_{ID_mov}_{BD_fix}_{ID_fix}_{coupe}_{num coupe}.csv
+
+Les fichiers de sorties contiennent une seule colonne avec 5 descriptions différentes associées à une coupe
+
+ATTENTION: La version française n'est pas à jour
