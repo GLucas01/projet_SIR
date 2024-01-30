@@ -235,9 +235,11 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 ## Scripts de traitement sur les images (rotation, recalage, normalisation, nouveaux atlas)
 
 ### Rotations
-- Utilisation de FSL 
+- Utilisation de FSL
+- Installation : https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/Linux
 - Commande : `fslswapdim input.nii x y z output.nii`
 - pour la dataset OASIS, rotation constante qui est la suivante : `fslswapdim input.nii z -x y output.nii`
+- Le script `script/old_script/OASIS_scripts/rotation_OASIS.sh` permet de faire les bonnes rotations des fichiers contenu dans un dossier.
 
 ### Recalage
 
