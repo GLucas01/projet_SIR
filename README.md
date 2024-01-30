@@ -314,7 +314,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 ## Génération d'un texte associée à chaque image obtenue
 - Nécessité de posséder la librairie nibabel pour les coupes: `pip install nibabel`
 - La commande suivante permet d'enchaîner les 3 scripts `slice_csv.py`, `getKeywords.py` et `Caption_Generation/en/gen_leg.py` :
-- *run in script* `python3 slice_to_caption.py <InputFolder>`
+- *ATTENTION: run in script*   `python3 slice_to_caption.py <InputFolder>`
 - le fonctionnement des 3 scripts est expliqué dans les 3 parties qui suivent
 - exemple d'une nomenclature
 
@@ -327,7 +327,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 │   └── Captions  
 	
 ### Extraction des informations des coupes pour chaque volume
-*run in script*
+*ATTENTION: run in script* 
 `python3 slice_csv.py <InputFolder>`
 
 En paramètre, le dossier contenant les volumes en format .nii.gz
@@ -352,7 +352,7 @@ Coronal,35,"(256, 136)","(0.93750185, 0.93749905, 1.1999967)","[(0, 34273), (3, 
 
 
 ### Création des mot-clés pour chaque coupe
-*run in script*
+*ATTENTION: run in script* 
 `python3 getKeywords.py <InputFolder>`
 
 En paramètre, le dossier contenant les fichiers csv extraits (Slice_csv)
@@ -374,7 +374,7 @@ Coronal,33,"(256, 136)","[('Unknown', '36650.3250'), ('cortex of right cerebral 
 ...
 
 ## Création des descriptions
-*run in script*
+*ATTENTION: run in script* 
 `python3 ./Caption_Generation/en/gen_leg.py <InputFolder>`
 
 En paramètre, le dossier contenant les fichiers csv header et coupes (Keywords)
