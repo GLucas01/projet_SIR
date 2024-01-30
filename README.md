@@ -312,6 +312,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 - Freesurfer command : `mri_convert image.nii image.mgz`
 
 ## Génération d'un texte associée à chaque image obtenue
+- Nécessité de posséder la librairie nibabel pour les coupes: `pip install nibabel`
 - La commande suivante permet d'enchaîner les 3 scripts `slice_csv.py`, `getKeywords.py` et `Caption_Generation/en/gen_leg.py` :
 - *run in script* `python3 slice_to_caption.py <InputFolder>`
 - le fonctionnement des 3 scripts est expliqué dans les 3 parties qui suivent
