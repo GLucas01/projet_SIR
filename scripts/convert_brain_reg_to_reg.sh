@@ -42,6 +42,7 @@ apply_transform() {
     output_file_name="${prefix}_reg_${suffix}.nii.gz"
     output_file="$reg_folder/$output_file_name"
 
+    # ATTENTION : modifier chemin d'accès à antsApplyTransforms
     /home/julie/Software/antsApplyTransforms \
         -d 3 \
         -i "$moving_image" \
