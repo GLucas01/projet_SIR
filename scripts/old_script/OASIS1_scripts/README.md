@@ -13,9 +13,6 @@
 - Utiliser la commande : `fslchfiletype NIFTI nom_fichier_sans_extension`
 - Le script `convert_hdr_img_to_nii.sh` prends en paramètre un dossier, et applique cela pour tout les fichiers nécessaire.
 
-## Supprimer les fichiers inutiles
-
-- Il y a des .gif dans le dossier, pour cela j'utilise `rm_gif_files.sh` qui prend en paramètre un dossier, il parcourt tout les fichiers, et si c'est un .gif, il le supprime
 
 ## Rotation des images pour matcher avec l'image fixe
 
@@ -27,16 +24,5 @@
 - les images `...anon_111_t88_gfc` ne sont pas bien orienté mais orienté identiquement, il faut leurs appliquer la transformation suivantes :
 	`fslswapdim input.nii -x -y z output.nii`
 - Le script `rotation_OASIS.sh` automatise cela en prenant également un dossier en paramètre
-
-## Recalage des images mobiles vers l'images fixe
-
-- Utilisation de ANTs
-- Le script `registration_OASIS.sh` automatise cela en prenant également un dossier en paramètre, les paramètres pour cette transformation on été ajusté pour l'image IBSR_01 en image fixe et pour les images OASIS en image mobile.
-
-## Normalisation des intensités et correcteur de bias
-
-- Utilisation de Freesurfer
-- Fonctionne bien uniquement sur des images T1
-- Le script ǹormalization_OASIS.sh` automatise cela avec un dossier en paramètre 
 
 
