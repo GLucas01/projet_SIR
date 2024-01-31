@@ -28,6 +28,7 @@ if [ -d "$fixed_folder" ]; then
 
                     transform_file="$output_folder/${moving_base}_reg_${fixed_base}"
 
+                    # ATTENTION : modifier chemin d'accès à antsRegistration
                     /home/thomas/Desktop/4TC/SIR/Registration_Ants/antsRegistration \
                        --dimensionality 3 \
                        --float 0 \

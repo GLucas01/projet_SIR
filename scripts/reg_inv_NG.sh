@@ -42,11 +42,12 @@ apply_transform() {
     output_file_name="${suffix}_reg_${prefix}_inv.nii.gz"
     output_file="$moving_fixed_reg_inv_folder/$output_file_name"
 
+    # ATTENTION : modifier chemin d'accès à antsApplyTransforms
     /home/julie/Software/antsApplyTransforms -d 3 \
         -r "$moving_image" \
         -i "$fixed_image" \
         -o "$output_file" \
-        -t "[$transform_file, 1]" \
+        -t "[$transform_file, 1]" \ # 1 = inverse
         --interpolation Linear
 
     echo "Fichier créé : $output_file"
