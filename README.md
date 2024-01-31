@@ -201,7 +201,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 - `Keywords` : le dossier contient les fichiers csv header et coupes associés à chaque volume
 - `Captions` : le dossier contient les légendes associées à chaque coupe
 
-##### Dossiers dont le nom contient 2 datasets, avec IBSR comme 1er nom
+##### Dossiers dont le nom contient 2 datasets, avec IBSR comme image mobile
 - Il faut mieux utiliser la segmentation de l'IBSR plutôt que la segmentation du 1er dataset
 - exemple de nomenclature
 
@@ -217,7 +217,7 @@ Un modèle génératif pour des images synthétiques de cerveau sain.
 - `reg`, `reg_brain`, `reg_inv`, `Slice_csv`,`Keywords`, `Captions` : cf paragraphe cas général
 - `seg` : images de IBSR () segmentées qui ont été obtenues par recalage direct. Paramètres : fichier .mat (obtenu par recalage direct --> dans le dossier reg_brain). Fixes : images du fixed_dataset (ici IXI). Moving : images du moving_dataset segmentées (ici IBSR)
 
-##### Dossiers dont le nom contient 2 datasets, avec IBSR comme 2ème nom
+##### Dossiers dont le nom contient 2 datasets, avec IBSR comme image fixe
 - exemple de nomencalture
 
     ├── IXI_IBSR  
@@ -255,7 +255,7 @@ Contient des fichiers servant à la génération des mots-clé
 - permet d'effectuer le recalage
 - **adaptation code** : changer la ligne 32 pour insérer le chemin vers le fichier `antsRegistration` 
 - **usage** : 
-	- général : `sh reg.sh <fixed_folder> <moving_folder> <output_folder>`
+	- général : *run in moving_fixe* `sh reg.sh <fixed_folder> <moving_folder> <output_folder>`
 	- exemple : julie@julie-ThinkPad:/media/julie/Intenso/SIR/data/T1/IBSR_IXI `sh /media/julie/Intenso/SIR/scripts/reg.sh /media/julie/Intenso/SIR/data/T2/IXI/brain/ /media/julie/Intenso/SIR/data/T1/IBSR/brain reg_brain/`
 
 
@@ -263,14 +263,14 @@ Contient des fichiers servant à la génération des mots-clé
 - permet de remettre le cerveau à partir des matrices de registration
 - **adaptation code** : changer la ligne 46 pour insérer le chemin vers le fichier `antsApplyTransforms`
 - **usage** 
-	- général : `sh convert_brain_reg_to_reg.sh <brain_reg_folder> <reg_folder> <NG_mov_folder> <NG_fix_folder>`
+	- général : *run in moving_fixe* `sh convert_brain_reg_to_reg.sh <brain_reg_folder> <reg_folder> <NG_mov_folder> <NG_fix_folder>`
 	- exemple : julie@julie-ThinkPad:/media/julie/Intenso/SIR/data/T1/IBSR_IXI `sh /media/julie/Intenso/SIR/scripts/convert_brain_reg_to_reg.sh reg_brain reg /media/julie/Intenso/SIR/data/T1/IBSR/NG /media/julie/Intenso/SIR/data/T2/IXI/NG`
 
 #### MajorityVoting.py
 - A partir des images segmentées, il est possible de créer un atlas par le processus de majority voting. Pour chaque image d'origine, 18 images segmentées ont été crées et sont stockées dans le dossier namedb_seg_atlas.
 - Le majority voting consiste à regarder, pour chaque pixel, quel label lui a été attribué dans les 18 images segmentées. Ensuite, le label qui lui a été le plus attribué est retenu. Le majority voting crée une image segmentée en prenant en compte le vote majoritaire des 18 images segmentées. 
 - **usage**
-	- général : `python3 MajorityVoting.py <input_folder_seg> <output_folder>`
+	- général : *run in data* `python3 MajorityVoting.py <input_folder_seg> <output_folder>`
 	- exemple : julie@julie-ThinkPad:/media/julie/Intenso/SIR/data `python3 /media/julie/Intenso/SIR/scripts/MajorityVoting.py T1/OASIS_IBSR/seg_inv T1/OASIS/seg`
 
 #### seg_inv.sh
@@ -282,7 +282,7 @@ Contient des fichiers servant à la génération des mots-clé
 - Ainsi, si l’on a n images OASIS et 18 IBSR, on obtient 18 images OASIS recalées par recalage ”direct”. Avec le recalage inverse, il est possible d’obtenir nx18 images segmentees OASIS
 - **adaptation code** : changer la ligne 30 pour insérer le chemin vers le fichier `antsApplyTransforms`
 - **usage** : 
-	- général : `sh seg_inv.sh <fixed/seg folder> <moving_fixed/seg_inv folder> <moving/brain folder> <moving_fixed/reg_brain folder>`
+	- général : *run in moving_fixe* `sh seg_inv.sh <fixed/seg folder> <moving_fixed/seg_inv folder> <moving/brain folder> <moving_fixed/reg_brain folder>`
 	- exemple : julie@julie-ThinkPad:/media/julie/Intenso/SIR/data/T1/OASIS_IBSR$ `sh /media/julie/Intenso/SIR/scripts/seg_inv.sh /media/julie/Intenso/SIR/data/T1/IBSR/seg/ seg_inv/ /media/julie/Intenso/SIR/data/T1/OASIS/brain/ reg_brain/`
 
 ####  reg_inv_NG
@@ -292,14 +292,14 @@ Contient des fichiers servant à la génération des mots-clé
 - L’application inverse du fichier .mat permet alors de recaler une image en NG d’un atlas (par exemple IXI) sur l’image de la base de donnee en niveau de gris(par exemple Kirby).
 - **adaptation code** : changer la ligne 46 pour insérer le chemin vers le fichier `antsApplyTransforms`
 - **usage**
-	- général : `sh reg_inv_NG_new.sh <fixed_NG_folder> <moving_NG_folder> <moving_fixed_reg_brain_folder> <moving_fixed_reg_inv_folder>`
+	- général : *run in moving_fixe* `sh reg_inv_NG_new.sh <fixed_NG_folder> <moving_NG_folder> <moving_fixed_reg_brain_folder> <moving_fixed_reg_inv_folder>`
 	- exemple : julie@julie-ThinkPad:/media/julie/Intenso/SIR/data/T2/Kirby_IXI `bash /media/julie/Intenso/SIR/scripts/reg_inv_NG_new.sh /media/julie/Intenso/SIR/data/T2/IXI/NG /media/julie/Intenso/SIR/data/FL/Kirby/NG reg_brain reg_inv`
 
 ### Normalisation
 #### BiasCorrection.py
 - permet de normaliser les images
 - **usage**
-	- général : `python3 BiasCorrection.py [-h] input_dir output_dir`
+	- général : *run in data* `python3 BiasCorrection.py [-h] input_dir output_dir`
 	- exemple : julie@julie-ThinkPad:/media/julie/Intenso/SIR/data `python3 /media/julie/Intenso/SIR/scripts/BiasCorrection.py [-h] T1/OASIS_IBSR/reg T1/OASIS_IBSR/reg_norm`
 
 ### Conversions
