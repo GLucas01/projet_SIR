@@ -376,7 +376,7 @@ Coronal,32,"(256, 136)","[('Unknown', '36719.9343')]"
 Coronal,33,"(256, 136)","[('Unknown', '36650.3250'), ('cortex of right cerebral hemisphere', '69.6093')]"
 ...
 
-## Création des descriptions
+### Création des descriptions
 *ATTENTION: run in script* 
 `python3 ./Caption_Generation/en/gen_leg.py <InputFolder>`
 
@@ -387,3 +387,13 @@ En paramètre, le dossier contenant les fichiers csv header et coupes (Keywords)
 Les fichiers de sorties contiennent une seule colonne avec 5 descriptions différentes associées à une coupe
 
 ATTENTION: La version française n'est pas à jour
+
+### Récupérer des coupes en niveau de gris
+Notre base de donnée n'est pas composé d'images 2D mais des volumes 3D.
+Pour retrouver les coupes correspondantes il est possible d'éxecuter le script slice_NG.py dans le dossier scripts.
+
+Il prend en entrée un volume en niveau de gris et enregistre toutes les coupes selon la même méthode que slice_csv.py.
+
+#### Test d'autres librairies
+Nous aurions pu travailler selon d'autres méthodologies ou librairies. Nous avons effectué plusieurs tests dont les explications sont retrouvables dans le dossier "Explications tests des coupes".
+Les différents scripts de test sont retrouvables dans `script/test_slice` et des fichiers résultats sont retrouvables dans le dossier `data/testSliceData(IXI_IXI)`
