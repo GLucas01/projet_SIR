@@ -1,7 +1,10 @@
-## Anatomie.csv
+# Dico
+Noms de colonnes de tout les fichiers CSV informations
+
+## Anatomie_IBSR.csv
 ID,Labels,RGB
 
-## Atlas_info.csv
+## IBSR_info.csv
 ID,GENDER,AGE
 
 ## IXI_info.csv

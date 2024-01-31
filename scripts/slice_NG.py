@@ -87,14 +87,10 @@ def getSlices ():
 
 
 if len(sys.argv) != 2:
-    print("Usage: python3 mon_script.py <inputFolder>")
+    print("Usage: python3 mon_script.py <inputFile>")
     sys.exit(1)
 
-inputFolder = sys.argv[1]
-
-# Choose random image in folder
-inputFiles = [f for f in os.listdir(inputFolder) if f.endswith('.nii.gz')]
-inputFile = random.choice(inputFiles)
+inputFile = sys.argv[1]
 
 Im_mov, ID_mov, Im_fix, ID_fix= getInfo()
 # Name output:
@@ -107,13 +103,12 @@ elif "seg" in inputFile:
 else :
     print("Le fichier n'est pas valide.")
     
-outputPath = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"Example_slice_NG")
+outputPath = os.path.join(os.path.sep.join(inputFile.split(os.path.sep)[:-1]),"slice_NG_{file}")
 if not os.path.exists(outputPath):
     os.makedirs(outputPath)    
 
 # Load image
-inputFilePath = os.path.join(inputFolder, inputFile)
-image = nib.load(inputFilePath)
+image = nib.load(inputFile)
 
 # Get slices
 getSlices()
