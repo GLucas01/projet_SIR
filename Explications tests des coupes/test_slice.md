@@ -1,6 +1,12 @@
 # Test de différentes méthodologies de création de coupe
 
-Une des problématiques qui ont avons est de savoir si les coupes qui nous créons correspondent bien aux coupes axiale, coronale et sagittale. DE plus, comment savoir si les segmentations seront adaptées aux coupes en niveau de gris sachant que nous les enregistrons pas ?
+Une des problématiques qui ont avons est de savoir si les coupes qui nous créons correspondent bien aux coupes axiale, coronale et sagittale. De plus, comment savoir si les segmentations seront adaptées aux coupes en niveau de gris sachant que nous les enregistrons pas ?
+
+#### Problématique que nous avons rencontré:
+Lors de la création de coupe nous utilisions au départ la libraire SimpleITK. Nous appliquions la fonction `GetArrayFromImage` puis nous coupions le volume pour en extraire les informations avec`np.unique`. Hors, lorsque nous avons voulu généraliser le précédé pour tout les volumes avec des images fixes qui n'était plus des IBSR pour avions des problèmes de taille des volumes.
+
+En effet, la fonction `GetArrayFromImage` ne semble pas conserver l'orientation des axes. Pour un IBSR recalé sur une image IXI en recalage inverse la taille du volume est (256, 256, 136) mais la taille du volume après passage dans `GetArrayFromImage` est (136, 256, 256). Cette inversion pourrait être la même à chaque fois mais pour la segmentation d'un IBSR qui est (256, 128, 256), le passage par cette fonction ne change rien et donne une taille de (256, 128, 256).
+Lorsque nous avons essayé avec la librairie nibabel, les axes ne semblait plus inversés. La confusion sur le fonctionnement de ces différentes librairies a poussé à tester différentes méthodes de création de coupe.
 
 Voici une présentation de plusieurs méthodologies de création de coupe que nous avons tester sur des volumes IXI recalé sur IXI.
 
