@@ -120,7 +120,7 @@ def findSegIBSR (inputFile, ID_mov, Im_fix, ID_fix):
     
     #Cas de la transformé inverse
     if "inv" in inputFile:
-        pathFile = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"seg_inverse")
+        pathFile = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"seg_inv")
         files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
         for file in files:
             if f"seg_IBSR_{ID_mov}" in file:
