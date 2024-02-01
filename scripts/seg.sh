@@ -25,13 +25,18 @@ for input_image in "${brain_folder}"/*.nii.gz; do
 
         output_image="${output_folder}/${moving_name}_seg_${seg_name}"
         reg_matrix="${brain_reg_folder}/${moving_name}_reg_${fixed_matrix_name}"
+        
+        if [ -e "$output_image" ]; then
+            echo "Skipping transformation for $moving_name. Output file already exists: $output_image"
+            
+        else
 
-        /media/emma/DALLE_BRAIN/SIR/script/ANTS/antsApplyTransforms -d 3 \
-            -i "${seg_image}" \
-            -r "${input_image}" \
-            -o "${output_image}" \
-            -t "[${reg_matrix}, 0]" \
-            --interpolation NearestNeighbor
+            /media/emma/DALLE_BRAIN/SIR/script/ANTS/antsApplyTransforms -d 3 \
+               -i "${seg_image}" \
+               -r "${input_image}" \
+               -o "${output_image}" \
+               -t "[${reg_matrix}, 0]" \
+               --interpolation NearestNeighbor
 
         echo "Fichier créé : ${output_image}"
     done
