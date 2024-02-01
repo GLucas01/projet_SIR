@@ -92,6 +92,36 @@ def fixPath (Im_fix, ID):
     
     return fixedPath
 
+
+def findSegIBSR (inputFile, ID_mov, Im_fix, ID_fix):
+    fixedPath = ""
+    
+    #Cas de la transformé inverse
+    if "inv" in inputFile:
+        pathFile = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"seg_inv")
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"seg_IBSR_{ID_mov}" in file:
+                fixedPath = os.path.join(pathFile,file)
+    
+    #Cas IBSR sur IBSR, segmentation de l'IBSR fixe
+    elif Im_fix == "IBSR":
+        pathFile = "../data/T1/IBSR/seg"
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"IBSR_{ID_fix}" in file:
+                fixedPath = os.path.join(pathFile,file)
+    
+    # Cas du calcul direct de recalage de l'IBSR en image mobile          
+    else:
+        pathFile = os.path.join(os.path.dirname(os.path.dirname(inputFilePath)),"seg")
+        files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
+        for file in files:
+            if f"IBSR_{ID_mov}" in file:
+                fixedPath = os.path.join(pathFile,file)
+    
+    return fixedPath
+
 def getSlices (inputImage, fixedImage):
     
     arrayImage = inputImage.get_fdata()
@@ -158,7 +188,6 @@ if len(sys.argv) != 2:
 
 inputFilePath = sys.argv[1]
 inputFile = os.path.basename(inputFilePath)
-#print(inputFile)
 
 # Extraire les infos du nom
 Im_mov, ID_mov, Im_fix, ID_fix= getInfo()
@@ -167,22 +196,20 @@ if Im_fix == "":
     file = f"{Im_mov}_{ID_mov}"
 else:
     file = f"{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}"
-#print(file)
+
 # Chemin du fichier de sortie
 outputPath = os.path.join(os.path.dirname(os.path.dirname(inputFilePath)),f"slice_{file}")
 if not os.path.exists(outputPath):
     os.makedirs(outputPath) 
-
-#print(f"Output path: {outputPath}")   
-
+ 
 # Réccupérer la segmentation associée
+if Im_mov == "IBSR":
+    fixedImagePath = findSegIBSR(inputFile, ID_mov, Im_fix, ID_fix)
 if Im_fix == "":
     fixedImagePath = fixPath(Im_mov, ID_mov)
 else:
     fixedImagePath = fixPath(Im_fix, ID_fix)
 
-#print(f"Input file: {inputFilePath}")
-#print(f"Fixed image: {fixedImagePath}")
 
 # Création de 3 coupes dans le volume en niveau de gris et la segmentation
 getSlices(nib.load(inputFilePath), nib.load(fixedImagePath))
