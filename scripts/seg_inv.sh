@@ -21,21 +21,26 @@ for input_image in "${brain_folder}"/*.nii.gz; do
         seg_name=$(basename "${seg_image}")
 
         fixed_brain_name=$(echo "${seg_name}" | sed 's/_majority.nii.gz/_brain.nii.gz/')
-        fixed_matrix_name=$(echo "${seg_name}" | sed 's/_majority.nii.gz/_brain0GenericAffine.mat/')
+        fixed_matrix_name=$(echo "${seg_name}" | sed 's/_majority.nii.gz/_MR1_mpr-1_anon_rot_brain0GenericAffine.mat/')
 
         output_image="${output_folder}/${moving_name}_seg_${seg_name}"
         reg_matrix="${brain_reg_folder}/${moving_name}_reg_${fixed_matrix_name}"
-
-        # ATTENTION : modifier chemin d'accès à antsApplyTransforms
-        # -t "[${reg_matrix}, 1]" \ , 1 = inverse
-        /home/thomas/Desktop/4TC/SIR/Registration_Ants/antsApplyTransforms -d 3 \
-            -i "${seg_image}" \
-            -r "${input_image}" \
-            -o "${output_image}" \
-            -t "[${reg_matrix}, 1]" \
-            --interpolation NearestNeighbor
-
-        echo "Fichier créé : ${output_image}"
+        
+        if [ -e "$output_image" ]; then
+            echo "Skipping transformation for $moving_name. Output file already exists: $output_image"
+            
+        else
+        
+	    # ATTENTION : modifier chemin d'accès à antsApplyTransforms
+	    # -t "[${reg_matrix}, 1]" \ , 1 = inverse
+	    /home/thomas/Desktop/4TC/SIR/Registration_Ants/antsApplyTransforms -d 3 \
+	        -i "${seg_image}" \
+	        -r "${input_image}" \
+	        -o "${output_image}" \
+	        -t "[${reg_matrix}, 1]" \
+	        --interpolation NearestNeighbor
+	   	    
+            echo "Fichier créé : $output_image"
+        fi
     done
 done
-
