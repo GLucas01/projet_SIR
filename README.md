@@ -408,3 +408,10 @@ Il prend en entrée un volume en niveau de gris et enregistre toutes les coupes 
 #### Test d'autres librairies
 Nous aurions pu travailler selon d'autres méthodologies ou librairies. Nous avons effectué plusieurs tests dont les explications sont retrouvables dans le dossier "Explications tests des coupes".
 Les différents scripts de test sont retrouvables dans `script/test_slice` et des fichiers résultats sont retrouvables dans le dossier `data/testSliceData(IXI_IXI)`
+
+#### Création d'une coupe sur chaque axes avec la segmentation associée
+Le code `slice_and_seg.py` crée un dossier slice pour une volume en niveau de gris mis en entrée. Il exporte une coupe au milieu de chaque axe et une coupe de la segmentation associée au même endroit.
+*Attention à bien exécuter le code dans le dossier scripts*
+Il utilise la méthodologie de coupe appliquée aussi dans le code `slice_csv.py` et `slice_NG.py`
+*Exemple d'execution: `python .\slice_and_seg.py ../data/T1/OASIS/NG/OAS1_0001_MR1_mpr-1_anon_rot.nii.gz`*
+Vous trouverez un exemple de résultat dans le dossier "Explications tests des coupes".

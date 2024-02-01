@@ -90,25 +90,22 @@ if len(sys.argv) != 2:
     print("Usage: python3 mon_script.py <inputFile>")
     sys.exit(1)
 
-inputFile = sys.argv[1]
+inputFilePath = sys.argv[1]
+inputFile = os.path.basename(inputFilePath)
 
 Im_mov, ID_mov, Im_fix, ID_fix= getInfo()
-# Name output:
-if "reg" in inputFile :
+# Nom de sortie
+if Im_fix == "":
+    file = f"{Im_mov}_{ID_mov}"
+else:
     file = f"{Im_mov}_{ID_mov}_{Im_fix}_{ID_fix}"
-elif "majority" in inputFile:
-    file = f"{Im_mov}_{ID_mov}_majority"
-elif "seg" in inputFile:
-    file = f"{Im_mov}_{ID_mov}_seg"
-else :
-    print("Le fichier n'est pas valide.")
     
-outputPath = os.path.join(os.path.sep.join(inputFile.split(os.path.sep)[:-1]),"slice_NG_{file}")
+outputPath = os.path.join(os.path.dirname(os.path.dirname(inputFilePath)),f"slice_NG_{file}")
 if not os.path.exists(outputPath):
     os.makedirs(outputPath)    
 
 # Load image
-image = nib.load(inputFile)
+image = nib.load(inputFilePath)
 
 # Get slices
 getSlices()

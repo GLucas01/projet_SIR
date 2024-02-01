@@ -102,3 +102,16 @@ coronal,91,"(256, 136)","(0.9375132322311401, 0.9375060200691223, 1.200003147125
 
 ### Conclusion
 A première vue, les csv produit par nibabel et simpleITK semblent être identiques.
+
+# Correlation entre coupe en niveu de gris et coupe de la segmentation
+
+## slice_and_seg.py
+Le code `slice_and_seg.py` crée un dossier slice pour une volume en niveau de gris mis en entrée. Il exporte une coupe au milieu de chaque axe et une coupe de la segmentation associée au même endroit.
+
+OASIS_0001:
+
+![Alt text](OASIS_0001_axial_128.JPG)
+
+![Alt text](OASIS_0001_coronal_128.JPG)
+
+![Alt text](OASIS_0001_sagittal_64.JPG)
