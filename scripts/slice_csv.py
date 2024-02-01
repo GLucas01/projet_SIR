@@ -139,7 +139,7 @@ def findSegIBSR (inputFile, ID_mov, Im_fix, ID_fix):
         pathFile = os.path.join(os.path.sep.join(inputFolder.split(os.path.sep)[:-1]),"seg")
         files = [f for f in os.listdir(pathFile) if f.endswith('.nii.gz')]
         for file in files:
-            if f"seg_IBSR_{ID_mov}" in file:
+            if f"IBSR_{ID_mov}" in file:
                 fixedPath = os.path.join(pathFile,file)
     
     return fixedPath
