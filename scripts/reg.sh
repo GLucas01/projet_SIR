@@ -18,21 +18,25 @@ if [ -d "$fixed_folder" ]; then
         mkdir -p "$output_folder"
     fi
 
+    # Parcours chaque image fixe dans le dossier fixed_folder
     for fixed_image in "$fixed_folder"/*.nii.gz; do
         if [ -f "$fixed_image" ]; then
             fixed_base=$(basename "$fixed_image" .nii.gz)
 
+            # Parcours chaque image mobile dans le dossier moving_folder
             for moving_image in "$moving_folder"/*.nii.gz; do
                 if [ -f "$moving_image" ]; then
                     moving_base=$(basename "$moving_image" .nii.gz)
 
+                    # Nom du fichier de transformation (.mat)
                     transform_file="$output_folder/${moving_base}_reg_${fixed_base}"
 
-                    # Vérifier si le fichier de transformation existe déjà
+                    # Vérifier si l'image recalée existe déjà
                     if [ -e "$transform_file.nii.gz" ]; then
                         echo "Skipping registration for $moving_image to $fixed_image. File already exists: $transform_file"
                     else
                         # ATTENTION : modifier chemin d'accès à antsRegistration
+                        # Exécute antsRegistration avec les paramètres spécifiés
                         /home/julie/Software/antsRegistration \
                            --dimensionality 3 \
                            --float 0 \
