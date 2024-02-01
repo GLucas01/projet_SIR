@@ -26,13 +26,11 @@ for input_image in "${brain_folder}"/*.nii.gz; do
         output_image="${output_folder}/${moving_name}_seg_${seg_name}"
         reg_matrix="${brain_reg_folder}/${moving_name}_reg_${fixed_matrix_name}"
 
-        # ATTENTION : modifier chemin d'accès à antsApplyTransforms
-        # -t "[${reg_matrix}, 1]" \ , 1 = inverse
-        /home/thomas/Desktop/4TC/SIR/Registration_Ants/antsApplyTransforms -d 3 \
+        /media/emma/DALLE_BRAIN/SIR/script/ANTS/antsApplyTransforms -d 3 \
             -i "${seg_image}" \
             -r "${input_image}" \
             -o "${output_image}" \
-            -t "[${reg_matrix}, 1]" \
+            -t "[${reg_matrix}, 0]" \
             --interpolation NearestNeighbor
 
         echo "Fichier créé : ${output_image}"

@@ -285,6 +285,17 @@ Contient des fichiers servant à la génération des mots-clé
 	- général : *run in moving_fixe* `sh seg_inv.sh <fixed/seg folder> <moving_fixed/seg_inv folder> <moving/brain folder> <moving_fixed/reg_brain folder>`
 	- exemple : julie@julie-ThinkPad:/media/julie/Intenso/SIR/data/T1/OASIS_IBSR$ `sh /media/julie/Intenso/SIR/scripts/seg_inv.sh /media/julie/Intenso/SIR/data/T1/IBSR/seg/ seg_inv/ /media/julie/Intenso/SIR/data/T1/OASIS/brain/ reg_brain/`
 
+#### seg.sh
+-  Tout d’abord, nous avons effecue un recalage d’une image IBSR (image mobile) sur une image d’une base de données(image fixe). Ce recalage a pour resultat :
+	- une image IBSR recalee sur une image d’une base de donnée en niveau de gris
+	- un fichier .mat stockant les parametre du recalage
+- L’application direct du fichier .mat permet alors de recaler une image segmentée de l'IBSR sur l’image de la base de donnée d'origine.
+- Les images resultantes de ce recalage direct sont donc des images segmentées de l'IBSR recalé selon les images de la base de donnée.
+- **adaptation code** : changer la ligne 30 pour insérer le chemin vers le fichier `antsApplyTransforms`
+- **usage** : 
+	- général : *run in moving_fixe* `sh seg_inv.sh <fixed/seg folder> <moving_fixed/seg folder> <moving/brain folder> <moving_fixed/reg_brain folder>`
+	- exemple : julie@julie-ThinkPad:/media/julie/Intenso/SIR/data/T1/OASIS_IBSR$ `sh /media/julie/Intenso/SIR/scripts/seg.sh /media/julie/Intenso/SIR/data/T1/IBSR/seg/ seg/ /media/julie/Intenso/SIR/data/T1/OASIS/brain/ reg_brain/`
+
 ####  reg_inv_NG
 - Tout d’abord, nous avons effecue un recalage d’une image d’une base de donnee, par exemple Kirby (image mobile) sur une image d’un atlas, par exemple IXI (image fixe). Ce recalage a pour resultat :
 	- une image d’une base de donnee (par exemple Kirby) recalee sur une image d’un atlas (par exemple IXI) en niveau de gris
